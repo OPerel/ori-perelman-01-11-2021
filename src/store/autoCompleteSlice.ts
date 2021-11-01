@@ -4,7 +4,7 @@ import fetchUtil from '../utils/fetchUtil';
 
 interface AutoCompleteState {
   inputValue: string;
-  options: string[];
+  options: any[];
   status: 'idle' | 'loading' | 'failed';
   error: string | null;
 }
@@ -26,7 +26,7 @@ const autoCompleteSlice = createSlice({
     },
     setOptions: (state, action: PayloadAction<any[]>) => {
       state.status = 'idle';
-      state.options = action.payload.map(local => local.LocalizedName);
+      state.options = action.payload;
     },
     setError: (state, action: PayloadAction<string>) => {
       state.status = 'failed';

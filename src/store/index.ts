@@ -3,10 +3,14 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import autoCompleteSlice, {
   fetchAutoCompleteOptions,
 } from './autoCompleteSlice';
+import currentWeatherSlice, {
+  fetchCurrentWeather,
+} from './currentWeatherSlice';
 
 export const store = configureStore({
   reducer: {
     autoComplete: autoCompleteSlice.reducer,
+    currentWeather: currentWeatherSlice.reducer,
   },
 });
 
@@ -24,4 +28,9 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 const useAppDispatch = () => useDispatch<AppDispatch>();
 const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export { fetchAutoCompleteOptions, useAppDispatch, useAppSelector };
+export {
+  fetchAutoCompleteOptions,
+  fetchCurrentWeather,
+  useAppDispatch,
+  useAppSelector,
+};

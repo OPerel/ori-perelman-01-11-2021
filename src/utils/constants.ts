@@ -4,7 +4,7 @@ export enum Routes {
 }
 
 export enum HeaderTexts {
-  Title = 'Herolo Weather task',
+  Title = 'Herolo Weather Task',
   HomeLink = 'Home',
   FavLink = 'Favorites',
 }

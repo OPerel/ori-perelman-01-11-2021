@@ -1,17 +1,29 @@
 import * as auto from '../data/autoComplete.json';
+import * as current from '../data/data.json';
 
 const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
-  console.log('fetching');
   return new Promise<any>(async (resolve, reject) => {
-    const url = `http://dataservice.accuweather.com${endpoint}
-      ?apikey=${process.env.REACT_APP_API_KEY}&q=${data}&language=en-us`;
+    let url = `http://dataservice.accuweather.com${endpoint}?apikey=${process.env.REACT_APP_API_KEY}`;
+
+    if (data) {
+      url += `&q=${data}`;
+    }
+    if (endpoint.includes('5day')) {
+      url += '&metric=true';
+    }
 
     setTimeout(() => {
-      console.log('resolving');
-      resolve((auto as any).default);
+      if (endpoint.includes('autocomplete')) {
+        resolve((auto as any).default);
+      } else if (endpoint.includes('5day')) {
+        resolve((current as any).default.forecast);
+      } else {
+        resolve((current as any).default.currentWeather);
+      }
     }, 1000);
 
     // reject('Error fetching')
+
     // try {
     //   const json = await fetch(url, {
     //     method: 'get'
@@ -20,7 +32,7 @@ const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
     //   resolve(res)
     // } catch (err) {
     //   console.warn('Error fetching: ', err);
-    //   reject(err.message);
+    //   reject(`Error fetching from ${endpoint}: ${err.message}`);
     // }
   });
 };
