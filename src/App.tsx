@@ -4,13 +4,21 @@ import Home from './views/Home/Home';
 import Favorites from './views/Favorites/Favorites';
 import Header from './componetns/Header/Header';
 import { Routes } from './utils/constants';
+import Container from '@mui/material/Container';
+import styled from 'styled-components';
+
+const AppContainer = styled(Container)`
+  margin-top: 2%;
+`;
 
 function App() {
   return (
     <Router>
       <Header />
-      <Route exact path={Routes.HOME} component={Home} />
-      <Route exact path={Routes.Favorites} component={Favorites} />
+      <AppContainer>
+        <Route exact path={Routes.Home} component={Home} />
+        <Route exact path={Routes.Favorites} component={Favorites} />
+      </AppContainer>
     </Router>
   );
 }
