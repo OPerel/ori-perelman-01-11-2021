@@ -3,7 +3,20 @@ import * as current from '../data/data.json';
 
 const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
   return new Promise<any>(async (resolve, reject) => {
-    let url = `http://dataservice.accuweather.com${endpoint}?apikey=${process.env.REACT_APP_API_KEY}`;
+
+    // mock `/favorite` API endpoints
+    if (endpoint.includes('favorite') && data) {
+      try {
+        const response = mockFavoriteEndpoint(endpoint, data);
+        resolve(response);
+      } catch (err) {
+        reject(`Error fetching from ${endpoint}: ${err.message}`);
+      }
+      return;
+    }
+
+    const apiKey = process.env.REACT_APP_API_KEY;
+    let url = `http://dataservice.accuweather.com${endpoint}?apikey=${apiKey}`;
 
     if (data) {
       url += `&q=${data}`;
@@ -36,5 +49,36 @@ const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
     // }
   });
 };
+
+/**
+ * Use localStorage to mock a DB for the user favorites
+ */
+const mockFavoriteEndpoint = (endpoint: string, data: string) => {
+  switch (endpoint) {
+    case '/add-favorite': {
+      const [id, name] = data.split(':');
+      localStorage.setItem(id, `hwa-${name}`);
+      return {
+        id,
+        name,
+      };
+    }
+    case '/remove-favorite': {
+      localStorage.removeItem(data);
+      return data;
+    }
+    case '/get-favorites': {
+      let favorites: { [key: string]: { name: string } } = {};
+      const keys = Object.keys(localStorage);
+      keys.forEach(key => {
+        const item = localStorage.getItem(key);
+        if (item && item.includes('hwa')) {
+          favorites[key] = { name: item.split('-')[1] };
+        }
+      });
+      return favorites;
+    }
+  }
+}
 
 export default fetchUtil;

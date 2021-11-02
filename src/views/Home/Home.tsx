@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
-import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -12,20 +11,20 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Tooltip from '@mui/material/Tooltip';
 import {
+  addToFavorites,
   fetchAutoCompleteOptions,
   fetchCurrentWeather,
+  getAllFavorites,
+  removeFromFavorites,
   useAppDispatch,
   useAppSelector,
 } from '../../store';
 import styled from 'styled-components';
-import { Tooltip } from '@mui/material';
+import AppAlert from '../../componetns/common/Alert';
 
 interface Props {}
-
-const StyledAlert = styled(Alert)`
-  margin: 5% auto;
-`;
 
 const StyledBox = styled(Box)`
   margin: 4% auto;
@@ -61,13 +60,28 @@ const Home: React.FC<Props> = () => {
     status: currentWeatherStatus,
     error: currentWeatherError,
   } = useAppSelector(state => state.currentWeather);
-  const [fav, setFav] = useState(false);
+  const { favorites } = useAppSelector(state => state.favorites);
+  const [fav, setFav] = useState<boolean>(value && value.Key in favorites);
 
-  console.log('inputValue: ', inputValue);
-  console.log('options: ', options);
+  const handleFavClick = () => {
+    if (fav) {
+      dispatch(removeFromFavorites(value.Key));
+    } else {
+      dispatch(addToFavorites(value.Key, inputValue));
+    }
+  };
 
-  console.log('value: ', value);
-  console.log('data: ', data);
+  useEffect(() => {
+    dispatch(getAllFavorites());
+    if (currentWeatherStatus === 'idle' && !currentWeatherError && value === null) {
+      dispatch(fetchCurrentWeather({ Key: 215854 }))
+    }
+  }, [currentWeatherError, currentWeatherStatus, dispatch, value]);
+
+  useEffect(() => {
+    setFav(value && value.Key in favorites);
+  }, [value, favorites]);
+
   return (
     <Container>
       <Box>
@@ -104,16 +118,14 @@ const Home: React.FC<Props> = () => {
             );
           }}
         />
-        {autoCompleteError && (
-          <StyledAlert severity="error">{autoCompleteError}</StyledAlert>
-        )}
+        {autoCompleteError && <AppAlert message={autoCompleteError} />}
       </Box>
 
       <StyledBox>
         {currentWeatherStatus === 'loading' ? (
           <CircularProgress color="secondary" size={50} />
         ) : currentWeatherError ? (
-          <StyledAlert>{currentWeatherError}</StyledAlert>
+          <AppAlert message={currentWeatherError} />
         ) : (
           data && (
             <Card>
@@ -121,7 +133,8 @@ const Home: React.FC<Props> = () => {
                 <CurrentLocationHeader>
                   <div>
                     <Typography variant="h4" color="primary">
-                      {inputValue}
+                      {/*TODO: get location name*/}
+                      {inputValue || 'Tel Aviv'}
                     </Typography>
                     <Typography variant="h6" color="secondary">
                       {data.currentWeather[0].Temperature.Metric.Value} &#8451;
@@ -131,7 +144,7 @@ const Home: React.FC<Props> = () => {
                     <Tooltip
                       title={fav ? 'Remove from favorites' : 'Add to favorites'}
                     >
-                      <IconButton onClick={() => setFav(!fav)}>
+                      <IconButton onClick={handleFavClick}>
                         {fav ? (
                           <Favorite fontSize="large" color="error" />
                         ) : (

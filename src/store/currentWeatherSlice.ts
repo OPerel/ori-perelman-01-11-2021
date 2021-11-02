@@ -10,6 +10,7 @@ interface LocationData {
 interface CurrentWeatherState {
   value: any;
   data: LocationData | null;
+  isFav: boolean;
   status: 'idle' | 'loading' | 'failed';
   error: string | null;
 }
@@ -17,6 +18,7 @@ interface CurrentWeatherState {
 const initialState: CurrentWeatherState = {
   value: null,
   data: null,
+  isFav: false,
   status: 'idle',
   error: null,
 };
@@ -45,10 +47,11 @@ const currentWeatherSlice = createSlice({
   },
 });
 
-const { reset, fetchWeather, setWeather, setError } = currentWeatherSlice.actions;
+const { reset, fetchWeather, setWeather, setError } =
+  currentWeatherSlice.actions;
 
 export const fetchCurrentWeather = (location: any): AppThunk => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     if (!location) {
       dispatch(reset());
       return;

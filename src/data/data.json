@@ -64,9 +64,7 @@
           "PrecipitationType": "Rain",
           "PrecipitationIntensity": "Light"
         },
-        "Sources": [
-          "AccuWeather"
-        ],
+        "Sources": ["AccuWeather"],
         "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=1&unit=c&lang=en-us",
         "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=1&unit=c&lang=en-us"
       },
@@ -97,9 +95,7 @@
           "IconPhrase": "Clear",
           "HasPrecipitation": false
         },
-        "Sources": [
-          "AccuWeather"
-        ],
+        "Sources": ["AccuWeather"],
         "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=2&unit=c&lang=en-us",
         "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=2&unit=c&lang=en-us"
       },
@@ -128,9 +124,7 @@
           "IconPhrase": "Clear",
           "HasPrecipitation": false
         },
-        "Sources": [
-          "AccuWeather"
-        ],
+        "Sources": ["AccuWeather"],
         "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=3&unit=c&lang=en-us",
         "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=3&unit=c&lang=en-us"
       },
@@ -159,9 +153,7 @@
           "IconPhrase": "Clear",
           "HasPrecipitation": false
         },
-        "Sources": [
-          "AccuWeather"
-        ],
+        "Sources": ["AccuWeather"],
         "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=4&unit=c&lang=en-us",
         "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=4&unit=c&lang=en-us"
       },
@@ -190,9 +182,7 @@
           "IconPhrase": "Clear",
           "HasPrecipitation": false
         },
-        "Sources": [
-          "AccuWeather"
-        ],
+        "Sources": ["AccuWeather"],
         "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=5&unit=c&lang=en-us",
         "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=5&unit=c&lang=en-us"
       }

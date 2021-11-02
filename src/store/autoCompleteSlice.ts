@@ -32,7 +32,6 @@ const autoCompleteSlice = createSlice({
     setOptions: (state, action: PayloadAction<any[]>) => {
       state.status = 'idle';
       state.options = action.payload;
-      console.log('state: ', state)
     },
     setError: (state, action: PayloadAction<string>) => {
       state.status = 'failed';

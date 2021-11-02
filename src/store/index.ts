@@ -6,11 +6,18 @@ import autoCompleteSlice, {
 import currentWeatherSlice, {
   fetchCurrentWeather,
 } from './currentWeatherSlice';
+import favoritesSlice, {
+  addToFavorites,
+  removeFromFavorites,
+  getAllFavorites,
+  getFavWeather,
+} from './favoritesSlice';
 
 export const store = configureStore({
   reducer: {
     autoComplete: autoCompleteSlice.reducer,
     currentWeather: currentWeatherSlice.reducer,
+    favorites: favoritesSlice.reducer,
   },
 });
 
@@ -31,6 +38,10 @@ const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export {
   fetchAutoCompleteOptions,
   fetchCurrentWeather,
+  addToFavorites,
+  removeFromFavorites,
+  getAllFavorites,
+  getFavWeather,
   useAppDispatch,
   useAppSelector,
 };
