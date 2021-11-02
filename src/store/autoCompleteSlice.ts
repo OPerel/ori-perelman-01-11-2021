@@ -20,6 +20,11 @@ const autoCompleteSlice = createSlice({
   name: 'autoComplete',
   initialState,
   reducers: {
+    reset: state => {
+      state.inputValue = '';
+      state.options = [];
+      state.status = 'idle';
+    },
     fetchOptions: (state, action: PayloadAction<string>) => {
       state.status = 'loading';
       state.inputValue = action.payload;
@@ -27,6 +32,7 @@ const autoCompleteSlice = createSlice({
     setOptions: (state, action: PayloadAction<any[]>) => {
       state.status = 'idle';
       state.options = action.payload;
+      console.log('state: ', state)
     },
     setError: (state, action: PayloadAction<string>) => {
       state.status = 'failed';
@@ -35,10 +41,14 @@ const autoCompleteSlice = createSlice({
   },
 });
 
-const { fetchOptions, setOptions, setError } = autoCompleteSlice.actions;
+const { reset, fetchOptions, setOptions, setError } = autoCompleteSlice.actions;
 
 export const fetchAutoCompleteOptions = (searchString: string): AppThunk => {
   return async dispatch => {
+    if (searchString === '') {
+      dispatch(reset());
+      return;
+    }
     dispatch(fetchOptions(searchString));
     try {
       const response = await fetchUtil(

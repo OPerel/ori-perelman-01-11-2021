@@ -15,7 +15,7 @@ interface CurrentWeatherState {
 }
 
 const initialState: CurrentWeatherState = {
-  value: '',
+  value: null,
   data: null,
   status: 'idle',
   error: null,
@@ -25,7 +25,12 @@ const currentWeatherSlice = createSlice({
   name: 'currentWeather',
   initialState,
   reducers: {
-    fetchWeather: (state, action: PayloadAction<string>) => {
+    reset: state => {
+      state.value = null;
+      state.data = null;
+      state.status = 'idle';
+    },
+    fetchWeather: (state, action: PayloadAction<any>) => {
       state.status = 'loading';
       state.value = action.payload;
     },
@@ -40,13 +45,12 @@ const currentWeatherSlice = createSlice({
   },
 });
 
-const { fetchWeather, setWeather, setError } = currentWeatherSlice.actions;
+const { reset, fetchWeather, setWeather, setError } = currentWeatherSlice.actions;
 
 export const fetchCurrentWeather = (location: any): AppThunk => {
-  console.log('fetchCurrentWeather: ', location);
   return async dispatch => {
     if (!location) {
-      dispatch(setWeather(null));
+      dispatch(reset());
       return;
     }
     dispatch(fetchWeather(location));

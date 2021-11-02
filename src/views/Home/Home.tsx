@@ -77,16 +77,11 @@ const Home: React.FC<Props> = () => {
           inputValue={inputValue}
           getOptionLabel={option => option.LocalizedName || ''}
           onInputChange={(e, newInput) => {
-            // if (newInput) {
-              console.log('dispatching');
-              dispatch(fetchAutoCompleteOptions(newInput));
-            // }
+            dispatch(fetchAutoCompleteOptions(newInput));
           }}
           value={value}
           onChange={(e, newValue) => {
-            // if (newValue) {
-              dispatch(fetchCurrentWeather(newValue));
-            // }
+            dispatch(fetchCurrentWeather(newValue));
           }}
           renderInput={params => {
             return (
