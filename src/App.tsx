@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 const AppContainer = styled(Container)`
   margin: 10% 0;
-  
+
   @media only screen and (min-width: 768px) {
     margin: 2% 0;
   }

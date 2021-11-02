@@ -3,7 +3,6 @@ import * as current from '../data/data.json';
 
 const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
   return new Promise<any>(async (resolve, reject) => {
-
     // mock `/favorite` API endpoints
     if (endpoint.includes('favorite') && data) {
       try {
@@ -79,6 +78,6 @@ const mockFavoriteEndpoint = (endpoint: string, data: string) => {
       return favorites;
     }
   }
-}
+};
 
 export default fetchUtil;

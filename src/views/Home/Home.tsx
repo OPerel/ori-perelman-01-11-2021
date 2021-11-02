@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
@@ -21,10 +24,8 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../store';
-import styled from 'styled-components';
 import AppAlert from '../../componetns/common/Alert';
-
-interface Props {}
+import { Routes } from '../../utils/constants';
 
 const StyledBox = styled(Box)`
   margin: 4% auto;
@@ -46,8 +47,18 @@ const WeatherText = styled(Box)`
   height: 30vh;
 `;
 
+interface LocationState {
+  locationKey: string;
+  name: string;
+}
+interface Props {}
+
 const Home: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
+  const location = useLocation<LocationState>();
+  const history = useHistory();
+  const name = location.state?.name;
+  const locationKey = location.state?.locationKey;
   const {
     inputValue,
     options,
@@ -62,25 +73,39 @@ const Home: React.FC<Props> = () => {
   } = useAppSelector(state => state.currentWeather);
   const { favorites } = useAppSelector(state => state.favorites);
   const [fav, setFav] = useState<boolean>(value && value.Key in favorites);
+  const [cityName, setCityName] = useState<string>('Tel Aviv');
 
   const handleFavClick = () => {
     if (fav) {
       dispatch(removeFromFavorites(value.Key));
     } else {
-      dispatch(addToFavorites(value.Key, inputValue || 'Tel Aviv'));
+      dispatch(addToFavorites(value.Key, cityName));
     }
   };
 
   useEffect(() => {
+    if (locationKey && name) {
+      dispatch(fetchCurrentWeather({ Key: locationKey }));
+      setCityName(name);
+      history.replace(Routes.Home);
+    }
+  }, [dispatch, locationKey, name, history]);
+
+  useEffect(() => {
     dispatch(getAllFavorites());
-    if (currentWeatherStatus === 'idle' && !currentWeatherError && value === null) {
-      dispatch(fetchCurrentWeather({ Key: 215854 }))
+    if (
+      currentWeatherStatus === 'idle' &&
+      !currentWeatherError &&
+      value === null
+    ) {
+      dispatch(fetchCurrentWeather({ Key: 215854 }));
+      setCityName('Tel Aviv');
     }
   }, [currentWeatherError, currentWeatherStatus, dispatch, value]);
 
   useEffect(() => {
     setFav(value && value.Key in favorites);
-  }, [value, favorites]);
+  }, [value, favorites, name, locationKey]);
 
   return (
     <Container>
@@ -96,6 +121,7 @@ const Home: React.FC<Props> = () => {
           value={value}
           onChange={(e, newValue) => {
             dispatch(fetchCurrentWeather(newValue));
+            setCityName(newValue?.LocalizedName || 'Tel Aviv');
           }}
           renderInput={params => {
             return (
@@ -127,14 +153,14 @@ const Home: React.FC<Props> = () => {
         ) : currentWeatherError ? (
           <AppAlert message={currentWeatherError} />
         ) : (
+          value &&
           data && (
             <Card>
               <CardContent>
                 <CurrentLocationHeader>
                   <div>
                     <Typography variant="h4" color="primary">
-                      {/*TODO: get location name*/}
-                      {inputValue || 'Tel Aviv'}
+                      {cityName}
                     </Typography>
                     <Typography variant="h6" color="secondary">
                       {data.currentWeather[0].Temperature.Metric.Value} &#8451;

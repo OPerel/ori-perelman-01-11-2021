@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
 import Container from '@mui/material/Container';
-import {
-  getAllFavorites,
-  useAppDispatch,
-  useAppSelector,
-} from '../../store';
+import { getAllFavorites, useAppDispatch, useAppSelector } from '../../store';
 import Grid from '@mui/material/Grid';
-import CircularProgress from "@mui/material/CircularProgress";
+import CircularProgress from '@mui/material/CircularProgress';
 import AppAlert from '../../componetns/common/Alert';
 import Typography from '@mui/material/Typography';
 import FavoriteCard from '../../componetns/favorites/FavoriteCard';
@@ -35,10 +31,10 @@ const Favorites: React.FC<Props> = () => {
       {favKeys.length > 0 ? (
         <Grid container spacing={2}>
           {favKeys.map(favKey => {
-            const {name} = favorites[favKey];
+            const { name } = favorites[favKey];
             return (
               <Grid key={favKey} item xs={6} md={2}>
-                <FavoriteCard locationKey={favKey} name={name}/>
+                <FavoriteCard locationKey={favKey} name={name} />
               </Grid>
             );
           })}
