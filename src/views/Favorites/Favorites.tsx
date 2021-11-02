@@ -5,11 +5,11 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../store';
-import { CircularProgress } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import CircularProgress from "@mui/material/CircularProgress";
 import AppAlert from '../../componetns/common/Alert';
 import Typography from '@mui/material/Typography';
 import FavoriteCard from '../../componetns/favorites/FavoriteCard';
-import Stack from "@mui/material/Stack";
 
 interface Props {}
 
@@ -33,12 +33,16 @@ const Favorites: React.FC<Props> = () => {
   return (
     <Container sx={{ textAlign: 'center' }}>
       {favKeys.length > 0 ? (
-        <Stack direction="row" spacing={5}>
+        <Grid container spacing={2}>
           {favKeys.map(favKey => {
             const {name} = favorites[favKey];
-            return <FavoriteCard key={favKey} locationKey={favKey} name={name}/>;
+            return (
+              <Grid key={favKey} item xs={6} md={2}>
+                <FavoriteCard locationKey={favKey} name={name}/>
+              </Grid>
+            );
           })}
-        </Stack>
+        </Grid>
       ) : (
         <Typography variant="h2" color="primary">
           No Favorites Yet!

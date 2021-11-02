@@ -67,7 +67,7 @@ const Home: React.FC<Props> = () => {
     if (fav) {
       dispatch(removeFromFavorites(value.Key));
     } else {
-      dispatch(addToFavorites(value.Key, inputValue));
+      dispatch(addToFavorites(value.Key, inputValue || 'Tel Aviv'));
     }
   };
 
@@ -161,8 +161,7 @@ const Home: React.FC<Props> = () => {
                 </WeatherText>
                 <Stack
                   direction={{ xs: 'column', md: 'row' }}
-                  // spacing={{ xs: 1, sm: 4, md: 5 }}
-                  spacing={8}
+                  spacing={{ xs: 3, md: 6 }}
                   justifyContent="center"
                 >
                   {data.forecast.DailyForecasts.map((day: any) => {

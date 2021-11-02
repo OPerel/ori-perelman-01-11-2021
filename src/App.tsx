@@ -8,7 +8,11 @@ import Container from '@mui/material/Container';
 import styled from 'styled-components';
 
 const AppContainer = styled(Container)`
-  margin-top: 2%;
+  margin: 10% 0;
+  
+  @media only screen and (min-width: 768px) {
+    margin: 2% 0;
+  }
 `;
 
 function App() {

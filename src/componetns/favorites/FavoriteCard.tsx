@@ -5,6 +5,21 @@ import Card from '@mui/material/Card';
 import { getFavWeather, useAppDispatch, useAppSelector } from '../../store';
 import AppAlert from '../common/Alert';
 import { CircularProgress } from '@mui/material';
+import styled from "styled-components";
+
+
+const StyledCard = styled(Card)`
+  min-width: 100%;
+  height: 30vh;
+`;
+
+const StyledContent = styled(CardContent)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 80%;
+`;
 
 interface Props {
   locationKey: string;
@@ -24,27 +39,29 @@ const FavoriteCard: React.FC<Props> = ({ locationKey, name }) => {
   }, [dispatch, locationKey]);
 
   return (
-    <Card sx={{ padding: '1% 1%' }}>
-      <CardContent>
-        <Typography variant="h4" color="info.dark">{name}</Typography>
+    <StyledCard>
+      <StyledContent>
+        <div>
+          <Typography variant="h5" color="info.dark">{name}</Typography>
+          {weather && (
+            <Typography variant="body1" color="secondary" mt={0}>
+              {weather[0].Temperature.Metric.Value} - &#8451;
+            </Typography>
+          )}
+        </div>
         {status === 'loading' ? (
-          <CircularProgress size={35} />
+          <CircularProgress size={35}  />
         ) : error ? (
           <AppAlert message={error} />
         ) : (
           weather && (
-            <>
-              <Typography variant="body1" color="secondary" mt={0}>
-                {weather[0].Temperature.Metric.Value} - &#8451;
-              </Typography>
-              <Typography variant="h5" color="info.main">
-                {weather[0].WeatherText}
-              </Typography>
-            </>
+            <Typography variant="h6" color="info.main" mt={3}>
+              {weather[0].WeatherText}
+            </Typography>
           )
         )}
-      </CardContent>
-    </Card>
+      </StyledContent>
+    </StyledCard>
   );
 };
 
