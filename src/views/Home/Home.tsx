@@ -15,6 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Tooltip from '@mui/material/Tooltip';
+import Grow from "@mui/material/Grow";
 import {
   addToFavorites,
   fetchAutoCompleteOptions,
@@ -190,20 +191,27 @@ const Home: React.FC<Props> = () => {
                   spacing={{ xs: 3, md: 6 }}
                   justifyContent="center"
                 >
-                  {data.forecast.DailyForecasts.map((day: any) => {
+                  {data.forecast.DailyForecasts.map((day: any, idx: number) => {
                     const dayStr = mapDays(new Date(day.Date).getDay());
                     return (
-                      <Card key={day.EpochDate} sx={{ padding: '1% 1%' }}>
-                        <CardContent>
-                          <Typography variant="h4" color="info.main">
-                            {dayStr}
-                          </Typography>
-                          <Typography variant="body1" color="secondary" mt={2}>
-                            {day.Temperature.Minimum.Value} -{' '}
-                            {day.Temperature.Maximum.Value} &#8451;
-                          </Typography>
-                        </CardContent>
-                      </Card>
+                      <Grow
+                        key={day.EpochDate}
+                        in
+                        style={{ transformOrigin: '0 0 0' }}
+                        {...{ timeout: idx * 300 } }
+                      >
+                        <Card sx={{ padding: '1% 1%' }}>
+                          <CardContent>
+                            <Typography variant="h4" color="info.main">
+                              {dayStr}
+                            </Typography>
+                            <Typography variant="body1" color="secondary" mt={2}>
+                              {day.Temperature.Minimum.Value} -{' '}
+                              {day.Temperature.Maximum.Value} &#8451;
+                            </Typography>
+                          </CardContent>
+                        </Card>
+                      </Grow>
                     );
                   })}
                 </Stack>

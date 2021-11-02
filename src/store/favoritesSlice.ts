@@ -9,6 +9,8 @@ interface Favorite {
   error: string | null;
 }
 
+// Favorite Items are structured as key - value pairs,
+// where ids are set as keys and item data as value
 interface Favorites {
   [key: string]: Favorite;
 }
