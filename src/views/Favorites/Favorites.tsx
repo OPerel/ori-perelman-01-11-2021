@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import AppAlert from '../../componetns/common/Alert';
 import Typography from '@mui/material/Typography';
 import FavoriteCard from '../../componetns/favoritesView/FavoriteCard';
+import {FavoriteTexts} from "../../utils/constants";
 
 interface Props {}
 
@@ -41,7 +42,7 @@ const Favorites: React.FC<Props> = () => {
         </Grid>
       ) : (
         <Typography variant="h2" color="primary">
-          No Favorites Yet!
+          {FavoriteTexts.NoFavorites}
         </Typography>
       )}
     </Container>

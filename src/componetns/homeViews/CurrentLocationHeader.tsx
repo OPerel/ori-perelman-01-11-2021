@@ -5,6 +5,7 @@ import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { FavButtonTooltip } from "../../utils/constants";
 
 interface Props {
   cityName: string;
@@ -31,7 +32,7 @@ const CurrentLocationHeader: React.FC<Props> = ({
       </div>
       <div>
         <Tooltip
-          title={isFav ? 'Remove from favoritesView' : 'Add to favoritesView'}
+          title={isFav ? FavButtonTooltip.Remove : FavButtonTooltip.Add}
         >
           <IconButton onClick={handleFavClick}>
             {isFav ? (
