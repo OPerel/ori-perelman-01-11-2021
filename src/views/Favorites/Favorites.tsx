@@ -8,9 +8,7 @@ import Typography from '@mui/material/Typography';
 import FavoriteCard from '../../componetns/favoritesView/FavoriteCard';
 import { FavoriteTexts } from '../../utils/constants';
 
-interface Props {}
-
-const Favorites: React.FC<Props> = () => {
+const Favorites: React.FC = () => {
   const dispatch = useAppDispatch();
   const { favorites, status, error } = useAppSelector(state => state.favorites);
 
@@ -30,7 +28,7 @@ const Favorites: React.FC<Props> = () => {
   return (
     <Container sx={{ textAlign: 'center' }}>
       {favKeys.length > 0 ? (
-        <Grid container spacing={2}>
+        <Grid container spacing={3}>
           {favKeys.map(favKey => {
             const { name } = favorites[favKey];
             return (

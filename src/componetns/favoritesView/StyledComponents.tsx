@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import IconButton from "@mui/material/IconButton";
 
 const StyledCard = styled(Card)`
+  display: flex;
+  flex-direction: column-reverse;
   min-width: 100%;
   height: 30vh;
+  padding: 2%;
   transition: 0.4s;
 
   &:hover {
@@ -24,7 +28,11 @@ const StyledContent = styled(CardContent)`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 80%;
+  height: 100%;
 `;
 
-export { StyledCard, StyledContent };
+const RemoveFav = styled(IconButton)`
+  align-self: end;
+`
+
+export { StyledCard, StyledContent, RemoveFav };

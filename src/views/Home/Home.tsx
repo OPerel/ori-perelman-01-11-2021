@@ -4,20 +4,19 @@ import { useLocation } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { fetchCurrentWeather, useAppDispatch } from '../../store';
 import { DefaultCity, Routes } from '../../utils/constants';
-import SearchInput from '../../componetns/homeViews/SearchInput';
-import CurrentLocationWeather from '../../componetns/homeViews/CurrentLocationWeather';
+import SearchInput from '../../componetns/homeView/SearchInput';
+import CurrentLocationWeather from '../../componetns/homeView/CurrentLocationWeather';
 
 // TODO: toggle dark theme
-// remove favorite from /favoritesView as well
+// style mobile app header
 // validate only english in search input
 
 interface LocationState {
   locationKey: string;
   locationName: string;
 }
-interface Props {}
 
-const Home: React.FC<Props> = () => {
+const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation<LocationState>();
   const history = useHistory();
