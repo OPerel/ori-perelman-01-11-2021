@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import IconButton from "@mui/material/IconButton";
+import IconButton from '@mui/material/IconButton';
 
 const StyledCard = styled(Card)`
   display: flex;
@@ -33,6 +33,6 @@ const StyledContent = styled(CardContent)`
 
 const RemoveFav = styled(IconButton)`
   align-self: end;
-`
+`;
 
 export { StyledCard, StyledContent, RemoveFav };

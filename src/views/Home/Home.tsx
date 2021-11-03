@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { fetchCurrentWeather, useAppDispatch } from '../../store';
-import { DefaultCity, Routes } from '../../utils/constants';
+import { DefaultCity } from '../../utils/constants';
 import SearchInput from '../../componetns/homeView/SearchInput';
 import CurrentLocationWeather from '../../componetns/homeView/CurrentLocationWeather';
 
@@ -28,7 +28,8 @@ const Home: React.FC = () => {
     if (locationKey && locationName) {
       dispatch(fetchCurrentWeather({ Key: locationKey }));
       setCityName(locationName);
-      history.replace(Routes.Home);
+    } else {
+      dispatch(fetchCurrentWeather({ Key: DefaultCity.Key }));
     }
   }, [dispatch, locationKey, locationName, history]);
 

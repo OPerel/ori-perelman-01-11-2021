@@ -1,0 +1,102 @@
+{
+  "3431644": [
+    {
+      "LocalObservationDateTime": "2021-11-03T18:10:00+07:00",
+      "EpochTime": 1635937800,
+      "WeatherText": "Some clouds",
+      "WeatherIcon": 36,
+      "HasPrecipitation": false,
+      "PrecipitationType": null,
+      "IsDayTime": false,
+      "Temperature": {
+        "Metric": {
+          "Value": 27.7,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Imperial": {
+          "Value": 82.0,
+          "Unit": "F",
+          "UnitType": 18
+        }
+      },
+      "MobileLink": "http://www.accuweather.com/en/id/telanaipura/3431644/current-weather/3431644?lang=en-us",
+      "Link": "http://www.accuweather.com/en/id/telanaipura/3431644/current-weather/3431644?lang=en-us"
+    }
+  ],
+  "328328": [
+    {
+      "LocalObservationDateTime": "2021-11-03T11:07:00+00:00",
+      "EpochTime": 1635937620,
+      "WeatherText": "Mostly sunny",
+      "WeatherIcon": 2,
+      "HasPrecipitation": false,
+      "PrecipitationType": null,
+      "IsDayTime": true,
+      "Temperature": {
+        "Metric": {
+          "Value": 8.4,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Imperial": {
+          "Value": 47.0,
+          "Unit": "F",
+          "UnitType": 18
+        }
+      },
+      "MobileLink": "http://www.accuweather.com/en/gb/london/ec4a-2/current-weather/328328?lang=en-us",
+      "Link": "http://www.accuweather.com/en/gb/london/ec4a-2/current-weather/328328?lang=en-us"
+    }
+  ],
+  "264120": [
+    {
+      "LocalObservationDateTime": "2021-11-03T05:55:00-05:00",
+      "EpochTime": 1635936900,
+      "WeatherText": "Cloudy",
+      "WeatherIcon": 7,
+      "HasPrecipitation": false,
+      "PrecipitationType": null,
+      "IsDayTime": true,
+      "Temperature": {
+        "Metric": {
+          "Value": 17.1,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Imperial": {
+          "Value": 63.0,
+          "Unit": "F",
+          "UnitType": 18
+        }
+      },
+      "MobileLink": "http://www.accuweather.com/en/pe/lima/264120/current-weather/264120?lang=en-us",
+      "Link": "http://www.accuweather.com/en/pe/lima/264120/current-weather/264120?lang=en-us"
+    }
+  ],
+  "215854": [
+    {
+      "LocalObservationDateTime": "2021-11-03T13:05:00+02:00",
+      "EpochTime": 1635937500,
+      "WeatherText": "Partly sunny",
+      "WeatherIcon": 3,
+      "HasPrecipitation": false,
+      "PrecipitationType": null,
+      "IsDayTime": true,
+      "Temperature": {
+        "Metric": {
+          "Value": 26.2,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Imperial": {
+          "Value": 79.0,
+          "Unit": "F",
+          "UnitType": 18
+        }
+      },
+      "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
+      "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us"
+    }
+  ]
+}

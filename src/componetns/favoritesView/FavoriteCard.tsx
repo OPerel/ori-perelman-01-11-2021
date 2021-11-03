@@ -2,12 +2,17 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
-import {getFavWeather, removeFromFavorites, useAppDispatch, useAppSelector} from '../../store';
+import {
+  getFavWeather,
+  removeFromFavorites,
+  useAppDispatch,
+  useAppSelector,
+} from '../../store';
 import AppAlert from '../common/Alert';
-import {FavButtonTooltip, Routes} from '../../utils/constants';
-import {RemoveFav, StyledCard, StyledContent} from './StyledComponents';
-import Delete from "@mui/icons-material/Delete";
-import {Tooltip} from "@mui/material";
+import { FavButtonTooltip, Routes } from '../../utils/constants';
+import { RemoveFav, StyledCard, StyledContent } from './StyledComponents';
+import Delete from '@mui/icons-material/Delete';
+import { Tooltip } from '@mui/material';
 
 interface Props {
   locationKey: string;
@@ -30,24 +35,26 @@ const FavoriteCard: React.FC<Props> = ({ locationKey, name }) => {
     });
   };
 
-  const handleRemoveFromFavorites = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleRemoveFromFavorites = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
     e.stopPropagation();
     dispatch(removeFromFavorites(locationKey));
-  }
+  };
 
   useEffect(() => {
     dispatch(getFavWeather(locationKey));
   }, [dispatch, locationKey]);
 
   if (error) {
-    return <AppAlert message={error} />
+    return <AppAlert message={error} />;
   }
 
   return (
     <StyledCard onClick={handleCardClick}>
       <Tooltip title={FavButtonTooltip.Remove}>
         <RemoveFav onClick={handleRemoveFromFavorites}>
-          <Delete color="error"/>
+          <Delete color="error" />
         </RemoveFav>
       </Tooltip>
       <StyledContent>
@@ -57,8 +64,8 @@ const FavoriteCard: React.FC<Props> = ({ locationKey, name }) => {
           </Typography>
           {status === 'loading' ? (
             <CircularProgress size={35} sx={{ marginTop: '25%' }} />
-            ) : (
-              weather && (
+          ) : (
+            weather && (
               <Typography variant="body1" color="secondary" mt={0}>
                 {weather[0].Temperature.Metric.Value} - &#8451;
               </Typography>

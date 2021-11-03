@@ -66,12 +66,14 @@ const CurrentLocationWeather: React.FC<Props> = ({
     setFav(value && value.Key in favorites);
   }, [value, favorites, locationName, locationKey]);
 
+  if (currentWeatherError) {
+    return <AppAlert message={currentWeatherError} />;
+  }
+
   return (
     <StyledBox>
       {currentWeatherStatus === 'loading' ? (
         <CircularProgress color="secondary" size={50} />
-      ) : currentWeatherError ? (
-        <AppAlert message={currentWeatherError} />
       ) : (
         value &&
         data && (

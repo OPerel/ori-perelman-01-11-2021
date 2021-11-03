@@ -1,5 +1,6 @@
 import * as auto from '../data/autoComplete.json';
 import * as current from '../data/data.json';
+import * as cities from '../data/cities.json';
 
 const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
   return new Promise<any>(async (resolve, reject) => {
@@ -24,18 +25,33 @@ const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
       url += '&metric=true';
     }
 
+    /**
+     * Respond with mock data from JSON
+     */
     setTimeout(() => {
       if (endpoint.includes('autocomplete')) {
         resolve((auto as any).default);
       } else if (endpoint.includes('5day')) {
         resolve((current as any).default.forecast);
       } else {
+        const key = endpoint.split('/')[3];
+        const citiesObj = (cities as any).default;
+        if (key in citiesObj) {
+          resolve(citiesObj[key]);
+          return;
+        }
         resolve((current as any).default.currentWeather);
       }
     }, 1000);
 
+    /**
+     * Respond with Mock error
+     */
     // reject(`Error fetching from ${endpoint}: Fetching Failed`)
 
+    /**
+     * Fetch from real API
+     */
     // try {
     //   const json = await fetch(url, {
     //     method: 'get'
