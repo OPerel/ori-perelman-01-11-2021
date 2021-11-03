@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import CircularProgress from '@mui/material/CircularProgress';
 import AppAlert from '../../componetns/common/Alert';
 import Typography from '@mui/material/Typography';
-import FavoriteCard from '../../componetns/favorites/FavoriteCard';
+import FavoriteCard from '../../componetns/favoritesView/FavoriteCard';
 
 interface Props {}
 

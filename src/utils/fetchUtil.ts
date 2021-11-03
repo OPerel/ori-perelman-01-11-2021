@@ -18,7 +18,7 @@ const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
     let url = `http://dataservice.accuweather.com${endpoint}?apikey=${apiKey}`;
 
     if (data) {
-      url += `&q=${data}`;
+      url += `&q=${data}&language=en-us`;
     }
     if (endpoint.includes('5day')) {
       url += '&metric=true';
@@ -34,7 +34,7 @@ const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
       }
     }, 1000);
 
-    // reject('Error fetching')
+    // reject(`Error fetching from ${endpoint}: Fetching Failed`)
 
     // try {
     //   const json = await fetch(url, {
@@ -50,7 +50,7 @@ const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
 };
 
 /**
- * Use localStorage to mock a DB for the user favorites
+ * Use localStorage to mock a DB for the user favoritesView
  */
 const mockFavoriteEndpoint = (endpoint: string, data: string) => {
   switch (endpoint) {

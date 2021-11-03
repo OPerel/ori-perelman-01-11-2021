@@ -1,38 +1,11 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
 import CircularProgress from '@mui/material/CircularProgress';
 import { getFavWeather, useAppDispatch, useAppSelector } from '../../store';
 import AppAlert from '../common/Alert';
-import styled from 'styled-components';
 import { Routes } from '../../utils/constants';
-
-const StyledCard = styled(Card)`
-  min-width: 100%;
-  height: 30vh;
-  transition: 0.4s;
-
-  &:hover {
-    box-shadow: 0 9px 12px 3px rgb(0 0 0 / 34%);
-    cursor: pointer;
-    transition: 0.4s;
-  }
-
-  &:active {
-    transform: scale(0.98);
-    transition: 0.4s;
-  }
-`;
-
-const StyledContent = styled(CardContent)`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 80%;
-`;
+import { StyledCard, StyledContent } from "./StyledComponents";
 
 interface Props {
   locationKey: string;
@@ -51,7 +24,7 @@ const FavoriteCard: React.FC<Props> = ({ locationKey, name }) => {
   const handleCardClick = () => {
     history.push(Routes.Home, {
       locationKey,
-      name,
+      locationName: name,
     });
   };
 

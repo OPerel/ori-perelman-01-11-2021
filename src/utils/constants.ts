@@ -8,3 +8,8 @@ export enum HeaderTexts {
   HomeLink = 'Home',
   FavLink = 'Favorites',
 }
+
+export enum DefaultCity {
+  Name = 'Tel Aviv',
+  Key = 215854
+}
