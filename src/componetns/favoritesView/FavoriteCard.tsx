@@ -54,12 +54,12 @@ const FavoriteCard: React.FC<Props> = ({ locationKey, name }) => {
     <StyledCard onClick={handleCardClick}>
       <Tooltip title={FavButtonTooltip.Remove}>
         <RemoveFav onClick={handleRemoveFromFavorites}>
-          <Delete color="error" />
+          <Delete color="primary" />
         </RemoveFav>
       </Tooltip>
       <StyledContent>
         <div>
-          <Typography variant="h5" color="info.dark">
+          <Typography variant="h5" color="primary">
             {name}
           </Typography>
           {status === 'loading' ? (
@@ -73,7 +73,7 @@ const FavoriteCard: React.FC<Props> = ({ locationKey, name }) => {
           )}
         </div>
         {weather && (
-          <Typography variant="h6" color="info.main" mt={3}>
+          <Typography variant="h6" color="secondary" mt={3}>
             {weather[0].WeatherText}
           </Typography>
         )}

@@ -41,9 +41,11 @@ const CurrentLocationWeather: React.FC<Props> = ({
 
   const { favorites } = useAppSelector(state => state.favorites);
 
-  const [fav, setFav] = useState<boolean>(value && value.Key in favorites);
+  const [isFavoriteLocation, setIsFavoriteLocation] = useState<boolean>(
+    value && value.Key in favorites
+  );
   const handleFavClick = () => {
-    if (fav) {
+    if (isFavoriteLocation) {
       dispatch(removeFromFavorites(value.Key));
     } else {
       dispatch(addToFavorites(value.Key, cityName));
@@ -63,7 +65,7 @@ const CurrentLocationWeather: React.FC<Props> = ({
   }, [currentWeatherError, currentWeatherStatus, dispatch, setCityName, value]);
 
   useEffect(() => {
-    setFav(value && value.Key in favorites);
+    setIsFavoriteLocation(value && value.Key in favorites);
   }, [value, favorites, locationName, locationKey]);
 
   if (currentWeatherError) {
@@ -73,7 +75,7 @@ const CurrentLocationWeather: React.FC<Props> = ({
   return (
     <StyledBox>
       {currentWeatherStatus === 'loading' ? (
-        <CircularProgress color="secondary" size={50} />
+        <CircularProgress color="info" size={50} />
       ) : (
         value &&
         data && (
@@ -82,12 +84,12 @@ const CurrentLocationWeather: React.FC<Props> = ({
               <CurrentLocationHeader
                 cityName={cityName}
                 temp={data.currentWeather[0].Temperature.Metric.Value}
-                isFav={fav}
+                isFavoriteLocation={isFavoriteLocation}
                 handleFavClick={handleFavClick}
               />
 
               <WeatherText>
-                <Typography variant="h3" color="info.dark">
+                <Typography variant="h3" color="primary">
                   {data.currentWeather[0].WeatherText}
                 </Typography>
               </WeatherText>

@@ -12,6 +12,7 @@ export enum HeaderTexts {
   Title = 'Herolo Weather Task',
   HomeLink = 'Home',
   FavLink = 'Favorites',
+  ToggleDarkMode = 'Toggle dark mode',
 }
 
 export enum FavoriteTexts {

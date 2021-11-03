@@ -10,14 +10,14 @@ import { FavButtonTooltip } from '../../utils/constants';
 interface Props {
   cityName: string;
   temp: string;
-  isFav: boolean;
+  isFavoriteLocation: boolean;
   handleFavClick(): void;
 }
 
 const CurrentLocationHeader: React.FC<Props> = ({
   cityName,
   temp,
-  isFav,
+  isFavoriteLocation,
   handleFavClick,
 }) => {
   return (
@@ -31,12 +31,16 @@ const CurrentLocationHeader: React.FC<Props> = ({
         </Typography>
       </div>
       <div>
-        <Tooltip title={isFav ? FavButtonTooltip.Remove : FavButtonTooltip.Add}>
+        <Tooltip
+          title={
+            isFavoriteLocation ? FavButtonTooltip.Remove : FavButtonTooltip.Add
+          }
+        >
           <IconButton onClick={handleFavClick}>
-            {isFav ? (
-              <Favorite fontSize="large" color="error" />
+            {isFavoriteLocation ? (
+              <Favorite fontSize="large" color="primary" />
             ) : (
-              <FavoriteBorderIcon fontSize="large" color="error" />
+              <FavoriteBorderIcon fontSize="large" color="primary" />
             )}
           </IconButton>
         </Tooltip>

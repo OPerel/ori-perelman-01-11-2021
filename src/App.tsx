@@ -7,23 +7,35 @@ import { Routes } from './utils/constants';
 import Container from '@mui/material/Container';
 import styled from 'styled-components';
 
-const AppContainer = styled(Container)`
-  margin: 10% 0;
+const Background = styled.main(
+  ({ theme }) => `
+    width: 100vw;
+    min-height: 100vh;
+    background-color: ${theme.palette.background.default};
+  `
+);
 
-  @media only screen and (min-width: 768px) {
-    margin: 2% 0;
-  }
-`;
+const AppContainer = styled(Container)(
+  ({ theme }) => `
+    margin: 10% 0;
+  
+    ${theme.breakpoints.up('md')} {
+      margin: 2% 0;
+    }
+  `
+);
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <AppContainer>
-        <Route exact path={Routes.Home} component={Home} />
-        <Route exact path={Routes.Favorites} component={Favorites} />
-      </AppContainer>
-    </Router>
+    <Background>
+      <Router>
+        <Header />
+        <AppContainer>
+          <Route exact path={Routes.Home} component={Home} />
+          <Route exact path={Routes.Favorites} component={Favorites} />
+        </AppContainer>
+      </Router>
+    </Background>
   );
 }
 

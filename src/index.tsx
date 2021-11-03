@@ -4,13 +4,17 @@ import './index.css';
 import App from './App';
 import { store } from './store';
 import { Provider } from 'react-redux';
+
 import * as serviceWorker from './serviceWorker';
+import CustomThemeProvider from './componetns/CustomThemeProvider/CustomThemeProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <CustomThemeProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </CustomThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,10 +1,10 @@
 import React from 'react';
 import mapDayToStr from '../../utils/mapDayToStr';
 import Grow from '@mui/material/Grow';
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import { ForecastCard } from './StyledComponents';
 
 interface Props {
   forecast: any[];
@@ -26,9 +26,9 @@ const Forecast: React.FC<Props> = ({ forecast }) => {
             style={{ transformOrigin: '0 0 0' }}
             {...{ timeout: idx * 300 }}
           >
-            <Card sx={{ padding: '1% 1%' }}>
+            <ForecastCard>
               <CardContent>
-                <Typography variant="h4" color="info.main">
+                <Typography variant="h4" color="primary">
                   {dayStr}
                 </Typography>
                 <Typography variant="body1" color="secondary" mt={2}>
@@ -36,7 +36,7 @@ const Forecast: React.FC<Props> = ({ forecast }) => {
                   {day.Temperature.Maximum.Value} &#8451;
                 </Typography>
               </CardContent>
-            </Card>
+            </ForecastCard>
           </Grow>
         );
       })}

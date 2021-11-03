@@ -10,7 +10,9 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import AppAlert from '../common/Alert';
 import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 import { DefaultCity } from '../../utils/constants';
+import { useTheme } from '@mui/material';
 
 interface SearchInputProps {
   setCityName(name: string): void;
@@ -18,7 +20,7 @@ interface SearchInputProps {
 
 const SearchInput: React.FC<SearchInputProps> = ({ setCityName }) => {
   const dispatch = useAppDispatch();
-
+  const { mode } = useTheme().palette;
   const {
     inputValue,
     options,
@@ -63,6 +65,13 @@ const SearchInput: React.FC<SearchInputProps> = ({ setCityName }) => {
             />
           );
         }}
+        PaperComponent={({ children }) => (
+          <Paper
+            style={{ background: mode === 'dark' ? '#03506F' : '#bdebf3' }}
+          >
+            {children}
+          </Paper>
+        )}
       />
       {autoCompleteError && <AppAlert message={autoCompleteError} />}
     </Box>
