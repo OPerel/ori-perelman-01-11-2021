@@ -5,7 +5,7 @@ export enum Routes {
 
 export enum DefaultCity {
   Name = 'Tel Aviv',
-  Key = 215854,
+  Key = '215854',
 }
 
 export enum HeaderTexts {

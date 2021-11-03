@@ -32,8 +32,9 @@ const SearchInput: React.FC<SearchInputProps> = ({ setCityName }) => {
       <Autocomplete
         loading={autoCompleteStatus === 'loading'}
         options={options}
-        inputValue={inputValue}
+        isOptionEqualToValue={(o, v) => o.Key === v.Key}
         getOptionLabel={option => option.LocalizedName || ''}
+        inputValue={inputValue}
         onInputChange={(e, newInput) => {
           dispatch(fetchAutoCompleteOptions(newInput));
         }}
