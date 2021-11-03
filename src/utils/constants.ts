@@ -5,7 +5,7 @@ export enum Routes {
 
 export enum DefaultCity {
   Name = 'Tel Aviv',
-  Key = 215854
+  Key = 215854,
 }
 
 export enum HeaderTexts {
@@ -15,11 +15,15 @@ export enum HeaderTexts {
 }
 
 export enum FavoriteTexts {
-  NoFavorites = 'No favorites yet...'
+  NoFavorites = 'No favorites yet...',
 }
 
 export enum FavButtonTooltip {
   Add = 'Add to favorites',
   Remove = 'Remove from favorites',
+}
 
+export enum AlertTexts {
+  Title = 'Error',
+  Close = 'Close',
 }

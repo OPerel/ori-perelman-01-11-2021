@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+import styled from 'styled-components';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 const StyledCard = styled(Card)`
   min-width: 100%;
@@ -27,7 +27,4 @@ const StyledContent = styled(CardContent)`
   height: 80%;
 `;
 
-export {
-  StyledCard,
-  StyledContent
-}
+export { StyledCard, StyledContent };

@@ -3,12 +3,11 @@ import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { fetchCurrentWeather, useAppDispatch } from '../../store';
-import {DefaultCity, Routes} from '../../utils/constants';
+import { DefaultCity, Routes } from '../../utils/constants';
 import SearchInput from '../../componetns/homeViews/SearchInput';
 import CurrentLocationWeather from '../../componetns/homeViews/CurrentLocationWeather';
 
-// TODO: refactor error messages to a modal
-// toggle dark theme
+// TODO: toggle dark theme
 // remove favorite from /favoritesView as well
 // validate only english in search input
 

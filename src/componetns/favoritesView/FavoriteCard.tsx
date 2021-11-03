@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { getFavWeather, useAppDispatch, useAppSelector } from '../../store';
 import AppAlert from '../common/Alert';
 import { Routes } from '../../utils/constants';
-import { StyledCard, StyledContent } from "./StyledComponents";
+import { StyledCard, StyledContent } from './StyledComponents';
 
 interface Props {
   locationKey: string;

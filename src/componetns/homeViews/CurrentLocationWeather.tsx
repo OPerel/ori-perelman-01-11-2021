@@ -15,7 +15,7 @@ import {
 } from '../../store';
 import Forecast from './Forecast';
 import CurrentLocationHeader from './CurrentLocationHeader';
-import {DefaultCity} from "../../utils/constants";
+import { DefaultCity } from '../../utils/constants';
 
 interface Props {
   locationName: string;

@@ -6,7 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import AppAlert from '../../componetns/common/Alert';
 import Typography from '@mui/material/Typography';
 import FavoriteCard from '../../componetns/favoritesView/FavoriteCard';
-import {FavoriteTexts} from "../../utils/constants";
+import { FavoriteTexts } from '../../utils/constants';
 
 interface Props {}
 

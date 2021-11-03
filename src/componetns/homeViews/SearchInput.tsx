@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import AppAlert from '../common/Alert';
 import Box from '@mui/material/Box';
-import {DefaultCity} from "../../utils/constants";
+import { DefaultCity } from '../../utils/constants';
 
 interface SearchInputProps {
   setCityName(name: string): void;
