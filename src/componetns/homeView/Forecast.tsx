@@ -28,10 +28,10 @@ const Forecast: React.FC<Props> = ({ forecast }) => {
           >
             <ForecastCard>
               <CardContent>
-                <Typography variant="h4" color="primary">
+                <Typography variant="h4" color="secondary">
                   {dayStr}
                 </Typography>
-                <Typography variant="body1" color="secondary" mt={2}>
+                <Typography variant="body1" color="info.main" mt={2}>
                   {day.Temperature.Minimum.Value} -{' '}
                   {day.Temperature.Maximum.Value} &#8451;
                 </Typography>

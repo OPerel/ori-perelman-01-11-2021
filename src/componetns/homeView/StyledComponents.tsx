@@ -24,10 +24,10 @@ const WeatherText = styled(Box)`
 
 const ForecastCard = styled(Card)(
   ({ theme }) => `
-    &.css-pi1gmu-MuiPaper-root-MuiCard-root,
-    &.css-137r5xi-MuiPaper-root-MuiCard-root {
+    &.css-1823jwr-MuiPaper-root-MuiCard-root,
+    &.css-pi1gmu-MuiPaper-root-MuiCard-root {
       background-color: #00000011;
-      box-shadow: 2px 4px 7px 2px ${theme.palette.primary.main}44
+      box-shadow: 2px 4px 7px 2px ${theme.palette.secondary.main}44;
     }
   `
 );

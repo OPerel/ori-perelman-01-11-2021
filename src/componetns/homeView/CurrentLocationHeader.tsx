@@ -23,10 +23,10 @@ const CurrentLocationHeader: React.FC<Props> = ({
   return (
     <StyledHeader>
       <div>
-        <Typography variant="h4" color="primary">
+        <Typography variant="h4" color="secondary">
           {cityName}
         </Typography>
-        <Typography variant="h6" color="secondary">
+        <Typography variant="h6" color="info.main">
           {temp} &#8451;
         </Typography>
       </div>
@@ -38,9 +38,9 @@ const CurrentLocationHeader: React.FC<Props> = ({
         >
           <IconButton onClick={handleFavClick}>
             {isFavoriteLocation ? (
-              <Favorite fontSize="large" color="primary" />
+              <Favorite fontSize="large" color="error" />
             ) : (
-              <FavoriteBorderIcon fontSize="large" color="primary" />
+              <FavoriteBorderIcon fontSize="large" color="error" />
             )}
           </IconButton>
         </Tooltip>

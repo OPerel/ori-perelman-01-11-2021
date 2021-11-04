@@ -13,7 +13,7 @@ const ColorModeToggleContext = createContext(() => {});
 export const useToggleColorMode = () => useContext(ColorModeToggleContext);
 
 const CustomThemeProvider: React.FC = ({ children }) => {
-  const [mode, setMode] = useState<Mode>('light');
+  const [mode, setMode] = useState<Mode>('dark');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   if (prefersDarkMode) {
@@ -51,7 +51,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
             contrastText: '#f5f5f5',
           },
           secondary: {
-            main: '#002419',
+            main: '#006c45',
           },
           info: {
             main: '#002419',
@@ -62,21 +62,23 @@ const getDesignTokens = (mode: PaletteMode) => ({
           },
         }
       : {
-          // palette values for dark mode
           primary: {
-            main: '#03506F',
-            dark: '#002419',
-            contrastText: '#FFE3D8',
+            main: '#253337',
+            dark: '#002530',
+            contrastText: '#a8aaaa',
           },
           secondary: {
-            main: '#002419',
+            main: '#a8aaaa',
           },
           info: {
-            main: '#FFE3D8',
+            main: '#a6c9cb',
           },
           background: {
-            default: '#171717',
-            paper: '#FFE3D8',
+            default: '#002530',
+            paper: '#0D2B33',
+          },
+          error: {
+            main: '#d94444',
           },
         }),
   },

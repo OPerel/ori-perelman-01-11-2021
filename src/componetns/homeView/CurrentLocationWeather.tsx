@@ -89,7 +89,7 @@ const CurrentLocationWeather: React.FC<Props> = ({
               />
 
               <WeatherText>
-                <Typography variant="h3" color="primary">
+                <Typography variant="h3" color="secondary">
                   {data.currentWeather[0].WeatherText}
                 </Typography>
               </WeatherText>

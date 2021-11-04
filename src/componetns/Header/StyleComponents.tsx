@@ -16,11 +16,12 @@ const StyledHeader = styled.header(
 
 const StyledLink = styled(NavLink)(
   props => `
-    padding: 10px 25px;
+    padding: 12px 25px;
     border-radius: 5%;
     background-color: ${props.theme.palette.primary.dark};
     color: ${props.theme.palette.primary.contrastText};
     text-decoration: none;
+    font-weight: bold;
 
     &:hover {
       opacity: 0.8;
@@ -35,7 +36,7 @@ const StyledLink = styled(NavLink)(
 
 const MobileLink = styled(NavLink)(
   props => `
-    color: ${props.theme.palette.primary.dark};
+    color: ${props.theme.palette.secondary.main};
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: bold;
@@ -50,8 +51,14 @@ const MobileLink = styled(NavLink)(
 
 const StyledModeIcon = styled(Brightness4Icon)(
   ({ theme }) => `
-    padding: 5px;
-    color: ${theme.palette.mode === 'dark' ? '#000' : '#F0A500'}
+    padding: 7px;
+    color: ${theme.palette.mode === 'dark' ? '#9a8888' : '#F0A500'};
+    border-radius: 50%;
+    
+    &:hover {
+      background-color: #00000033;
+      cursor: pointer;
+    }
   `
 );
 
