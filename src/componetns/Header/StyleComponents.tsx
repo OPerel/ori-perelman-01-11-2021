@@ -33,6 +33,21 @@ const StyledLink = styled(NavLink)(
   `
 );
 
+const MobileLink = styled(NavLink)(
+  props => `
+    color: ${props.theme.palette.primary.dark};
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    
+    &.${props.activeClassName} {
+      opacity: 0.7;
+      pointer-events: none;
+      text-decoration: underline;
+    }
+  `
+);
+
 const StyledModeIcon = styled(Brightness4Icon)(
   ({ theme }) => `
     padding: 5px;
@@ -40,4 +55,4 @@ const StyledModeIcon = styled(Brightness4Icon)(
   `
 );
 
-export { StyledLink, StyledHeader, StyledModeIcon };
+export { StyledLink, StyledHeader, StyledModeIcon, MobileLink };

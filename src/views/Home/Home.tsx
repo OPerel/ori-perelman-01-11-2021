@@ -7,9 +7,7 @@ import { DefaultCity } from '../../utils/constants';
 import SearchInput from '../../componetns/homeView/SearchInput';
 import CurrentLocationWeather from '../../componetns/homeView/CurrentLocationWeather';
 
-// TODO: toggle dark theme
-// style mobile app header
-// validate only english in search input
+// TODO: validate only english in search input
 
 interface LocationState {
   locationKey: string;

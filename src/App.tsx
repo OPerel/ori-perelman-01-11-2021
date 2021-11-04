@@ -17,10 +17,10 @@ const Background = styled.main(
 
 const AppContainer = styled(Container)(
   ({ theme }) => `
-    margin: 10% 0;
+    padding: 10% 0;
   
     ${theme.breakpoints.up('md')} {
-      margin: 2% 0;
+      padding: 2% 0;
     }
   `
 );
