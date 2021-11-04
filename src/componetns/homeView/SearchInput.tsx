@@ -11,7 +11,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import AppAlert from '../common/Alert';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import { DefaultCity, SearchInputTexts } from '../../utils/constants';
+import {
+  DefaultCity,
+  SearchInputTexts,
+  StoreItemStatus,
+} from '../../utils/constants';
 import { useTheme } from '@mui/material';
 import useInputValidation from '../../hooks/useInputValidation';
 
@@ -34,7 +38,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ setCityName }) => {
   return (
     <Box>
       <Autocomplete
-        loading={autoCompleteStatus === 'loading'}
+        loading={autoCompleteStatus === StoreItemStatus.Loading}
         options={options}
         isOptionEqualToValue={(o, v) => o.Key === v.Key}
         getOptionLabel={option => option.LocalizedName || ''}
@@ -62,7 +66,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ setCityName }) => {
                 ...params.InputProps,
                 endAdornment: (
                   <React.Fragment>
-                    {autoCompleteStatus === 'loading' && (
+                    {autoCompleteStatus === StoreItemStatus.Loading && (
                       <CircularProgress color="inherit" size={25} />
                     )}
                     {params.InputProps.endAdornment}

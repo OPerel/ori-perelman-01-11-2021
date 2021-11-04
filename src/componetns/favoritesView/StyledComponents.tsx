@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import IconButton from '@mui/material/IconButton';
 
-const StyledCard = styled(Card)(
+const StyledFavoriteCard = styled(Card)(
   ({ theme }) => `
     display: flex;
     flex-direction: column-reverse;
@@ -33,7 +33,7 @@ const StyledContent = styled(CardContent)`
   height: 100%;
 `;
 
-const RemoveFav = styled(IconButton)`
+const RemoveFavorite = styled(IconButton)`
   align-self: end;
 
   &.css-1drgtl0-MuiButtonBase-root-MuiIconButton-root:hover {
@@ -41,4 +41,4 @@ const RemoveFav = styled(IconButton)`
   }
 `;
 
-export { StyledCard, StyledContent, RemoveFav };
+export { StyledFavoriteCard, StyledContent, RemoveFavorite };

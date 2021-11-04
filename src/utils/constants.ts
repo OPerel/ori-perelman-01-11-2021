@@ -8,6 +8,12 @@ export enum DefaultCity {
   Key = '215854',
 }
 
+export enum StoreItemStatus {
+  Loading = 'loading',
+  Idle = 'idle',
+  Failed = 'failed',
+}
+
 export enum HeaderTexts {
   Title = 'Herolo Weather Task',
   HomeLink = 'Home',

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from './';
 import fetchUtil from '../utils/fetchUtil';
+import { StoreItemStatus } from '../utils/constants';
 
 interface AutoCompleteState {
   inputValue: string;
@@ -12,7 +13,7 @@ interface AutoCompleteState {
 const initialState: AutoCompleteState = {
   inputValue: '',
   options: [],
-  status: 'idle',
+  status: StoreItemStatus.Idle,
   error: null,
 };
 
@@ -23,18 +24,18 @@ const autoCompleteSlice = createSlice({
     reset: state => {
       state.inputValue = '';
       state.options = [];
-      state.status = 'idle';
+      state.status = StoreItemStatus.Idle;
     },
     fetchOptions: (state, action: PayloadAction<string>) => {
-      state.status = 'loading';
+      state.status = StoreItemStatus.Loading;
       state.inputValue = action.payload;
     },
     setOptions: (state, action: PayloadAction<any[]>) => {
-      state.status = 'idle';
+      state.status = StoreItemStatus.Idle;
       state.options = action.payload;
     },
     setError: (state, action: PayloadAction<string>) => {
-      state.status = 'failed';
+      state.status = StoreItemStatus.Failed;
       state.error = action.payload;
     },
   },

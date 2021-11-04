@@ -15,7 +15,7 @@ import {
 } from '../../store';
 import Forecast from './Forecast';
 import CurrentLocationHeader from './CurrentLocationHeader';
-import { DefaultCity } from '../../utils/constants';
+import { DefaultCity, StoreItemStatus } from '../../utils/constants';
 
 interface Props {
   locationName: string;
@@ -56,7 +56,7 @@ const CurrentLocationWeather: React.FC<Props> = ({
   useEffect(() => {
     dispatch(getAllFavorites());
     if (
-      currentWeatherStatus === 'idle' &&
+      currentWeatherStatus === StoreItemStatus.Idle &&
       !currentWeatherError &&
       value === null
     ) {
@@ -75,7 +75,7 @@ const CurrentLocationWeather: React.FC<Props> = ({
 
   return (
     <StyledBox>
-      {currentWeatherStatus === 'loading' ? (
+      {currentWeatherStatus === StoreItemStatus.Loading ? (
         <CircularProgress color="info" size={50} />
       ) : (
         value &&

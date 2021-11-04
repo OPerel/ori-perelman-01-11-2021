@@ -9,8 +9,12 @@ import {
   useAppSelector,
 } from '../../store';
 import AppAlert from '../common/Alert';
-import { FavButtonTooltip, Routes } from '../../utils/constants';
-import { RemoveFav, StyledCard, StyledContent } from './StyledComponents';
+import {
+  FavButtonTooltip,
+  Routes,
+  StoreItemStatus,
+} from '../../utils/constants';
+import { RemoveFavorite, StyledFavoriteCard, StyledContent } from './StyledComponents';
 import Delete from '@mui/icons-material/Delete';
 import { Tooltip } from '@mui/material';
 
@@ -28,7 +32,7 @@ const FavoriteCard: React.FC<Props> = ({ locationKey, name }) => {
     error,
   } = useAppSelector(state => state.favorites.favorites[locationKey]);
 
-  const handleCardClick = () => {
+  const handleFavoriteClick = () => {
     history.push(Routes.Home, {
       locationKey,
       locationName: name,
@@ -51,18 +55,18 @@ const FavoriteCard: React.FC<Props> = ({ locationKey, name }) => {
   }
 
   return (
-    <StyledCard onClick={handleCardClick}>
+    <StyledFavoriteCard onClick={handleFavoriteClick}>
       <Tooltip title={FavButtonTooltip.Remove}>
-        <RemoveFav onClick={handleRemoveFromFavorites}>
+        <RemoveFavorite onClick={handleRemoveFromFavorites}>
           <Delete color="error" />
-        </RemoveFav>
+        </RemoveFavorite>
       </Tooltip>
       <StyledContent>
         <div>
           <Typography variant="h5" color="secondary">
             {name}
           </Typography>
-          {status === 'loading' ? (
+          {status === StoreItemStatus.Loading ? (
             <CircularProgress
               color="info"
               size={35}
@@ -82,7 +86,7 @@ const FavoriteCard: React.FC<Props> = ({ locationKey, name }) => {
           </Typography>
         )}
       </StyledContent>
-    </StyledCard>
+    </StyledFavoriteCard>
   );
 };
 

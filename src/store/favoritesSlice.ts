@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from './';
 import fetchUtil from '../utils/fetchUtil';
+import { StoreItemStatus } from '../utils/constants';
 
 interface Favorite {
   name: string;
@@ -23,7 +24,7 @@ interface FavoritesState {
 
 const initialState: FavoritesState = {
   favorites: {},
-  status: 'idle',
+  status: StoreItemStatus.Idle,
   error: null,
 };
 
@@ -32,34 +33,34 @@ const favoritesSlice = createSlice({
   initialState,
   reducers: {
     fetchFavorites: state => {
-      state.status = 'loading';
+      state.status = StoreItemStatus.Loading;
     },
     addFavorite: (
       state,
       action: PayloadAction<{ id: string; name: string }>
     ) => {
-      state.status = 'idle';
+      state.status = StoreItemStatus.Idle;
       const { id, name } = action.payload;
       state.favorites[id] = { ...state.favorites[id], name };
     },
     removeFavorite: (state, action: PayloadAction<string>) => {
-      state.status = 'idle';
+      state.status = StoreItemStatus.Idle;
       delete state.favorites[action.payload];
     },
     setFavorites: (state, action: PayloadAction<Favorites>) => {
-      state.status = 'idle';
+      state.status = StoreItemStatus.Idle;
       state.favorites = action.payload;
     },
     getFavorite: (state, action) => {
-      state.favorites[action.payload].status = 'loading';
+      state.favorites[action.payload].status = StoreItemStatus.Loading;
     },
     setFavoriteWeather: (state, action: PayloadAction<any>) => {
       const { id, data } = action.payload;
-      state.favorites[id].status = 'idle';
+      state.favorites[id].status = StoreItemStatus.Idle;
       state.favorites[id].currentWeather = data;
     },
     setError: (state, action: PayloadAction<string>) => {
-      state.status = 'failed';
+      state.status = StoreItemStatus.Failed;
       state.error = action.payload;
     },
   },

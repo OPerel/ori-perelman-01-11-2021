@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from './';
 import fetchUtil from '../utils/fetchUtil';
+import { StoreItemStatus } from '../utils/constants';
 
 interface LocationData {
   currentWeather: any;
@@ -19,7 +20,7 @@ const initialState: CurrentWeatherState = {
   value: null,
   data: null,
   isFav: false,
-  status: 'idle',
+  status: StoreItemStatus.Idle,
   error: null,
 };
 
@@ -30,18 +31,18 @@ const currentWeatherSlice = createSlice({
     reset: state => {
       state.value = null;
       state.data = null;
-      state.status = 'idle';
+      state.status = StoreItemStatus.Idle;
     },
     fetchWeather: (state, action: PayloadAction<any>) => {
-      state.status = 'loading';
+      state.status = StoreItemStatus.Loading;
       state.value = action.payload;
     },
     setWeather: (state, action: PayloadAction<any>) => {
-      state.status = 'idle';
+      state.status = StoreItemStatus.Idle;
       state.data = action.payload;
     },
     setError: (state, action: PayloadAction<string>) => {
-      state.status = 'failed';
+      state.status = StoreItemStatus.Failed;
       state.error = action.payload;
     },
   },
