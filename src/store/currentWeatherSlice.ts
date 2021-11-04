@@ -50,6 +50,9 @@ const currentWeatherSlice = createSlice({
 const { reset, fetchWeather, setWeather, setError } =
   currentWeatherSlice.actions;
 
+/**
+ * Action thunk creator that accepts an object with a "Key" field.
+ */
 export const fetchCurrentWeather = (location: any): AppThunk => {
   return async (dispatch, getState) => {
     if (!location) {

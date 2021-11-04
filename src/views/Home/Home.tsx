@@ -7,8 +7,6 @@ import { DefaultCity } from '../../utils/constants';
 import SearchInput from '../../componetns/homeView/SearchInput';
 import CurrentLocationWeather from '../../componetns/homeView/CurrentLocationWeather';
 
-// TODO: validate only english in search input
-
 interface LocationState {
   locationKey: string;
   locationName: string;
@@ -18,6 +16,7 @@ const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation<LocationState>();
   const history = useHistory();
+  // TODO: better names for location state vars
   const locationName = location.state?.locationName;
   const locationKey = location.state?.locationKey;
   const [cityName, setCityName] = useState<string>(DefaultCity.Name);

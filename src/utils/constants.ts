@@ -15,6 +15,11 @@ export enum HeaderTexts {
   ToggleDarkMode = 'Toggle dark mode',
 }
 
+export enum SearchInputTexts {
+  Label = 'City',
+  Error = '* English only',
+}
+
 export enum FavoriteTexts {
   NoFavorites = 'No favorites yet...',
 }

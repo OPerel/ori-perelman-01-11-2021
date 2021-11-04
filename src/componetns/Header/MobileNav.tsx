@@ -26,29 +26,12 @@ const MobileNav: React.FC<Props> = () => {
 
   return (
     <div>
-      <IconButton
-        aria-label="more"
-        aria-controls="long-menu"
-        aria-expanded={open ? 'true' : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
+      <IconButton onClick={handleClick}>
         <Typography color="primary.contrastText">
           <MenuIcon />
         </Typography>
       </IconButton>
-      <Menu
-        id="long-menu"
-        MenuListProps={{
-          'aria-labelledby': 'long-button',
-          sx: {
-            justifyContent: 'center',
-          },
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
+      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem
           divider
           onClick={handleClose}

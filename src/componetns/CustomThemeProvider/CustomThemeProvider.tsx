@@ -13,7 +13,7 @@ const ColorModeToggleContext = createContext(() => {});
 export const useToggleColorMode = () => useContext(ColorModeToggleContext);
 
 const CustomThemeProvider: React.FC = ({ children }) => {
-  const [mode, setMode] = useState<Mode>('dark');
+  const [mode, setMode] = useState<Mode>('light');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   if (prefersDarkMode) {

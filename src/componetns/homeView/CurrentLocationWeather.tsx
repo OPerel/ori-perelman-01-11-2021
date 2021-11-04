@@ -44,6 +44,7 @@ const CurrentLocationWeather: React.FC<Props> = ({
   const [isFavoriteLocation, setIsFavoriteLocation] = useState<boolean>(
     value && value.Key in favorites
   );
+
   const handleFavClick = () => {
     if (isFavoriteLocation) {
       dispatch(removeFromFavorites(value.Key));
