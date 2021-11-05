@@ -1,8 +1,8 @@
 import React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import {
+  currentCity,
   fetchAutoCompleteOptions,
-  fetchCurrentWeather,
   useAppDispatch,
   useAppSelector,
 } from '../../store';
@@ -11,19 +11,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import AppAlert from '../common/Alert';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import {
-  DefaultCity,
-  SearchInputTexts,
-  StoreItemStatus,
-} from '../../utils/constants';
+import { SearchInputTexts, StoreItemStatus } from '../../utils/constants';
 import { useTheme } from '@mui/material';
 import useInputValidation from '../../hooks/useInputValidation';
 
-interface SearchInputProps {
-  setCityName(name: string): void;
-}
-
-const SearchInput: React.FC<SearchInputProps> = ({ setCityName }) => {
+const SearchInput: React.FC = () => {
   const dispatch = useAppDispatch();
   const { mode } = useTheme().palette;
   const {
@@ -48,8 +40,9 @@ const SearchInput: React.FC<SearchInputProps> = ({ setCityName }) => {
         }}
         value={value}
         onChange={(e, newValue) => {
-          dispatch(fetchCurrentWeather(newValue));
-          setCityName(newValue?.LocalizedName || DefaultCity.Name);
+          dispatch(
+            currentCity({ name: newValue.LocalizedName, Key: newValue.Key })
+          );
         }}
         renderInput={params => {
           return (

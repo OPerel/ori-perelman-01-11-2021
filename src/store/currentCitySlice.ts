@@ -3,12 +3,10 @@ import { AppThunk } from './';
 import { DefaultCity, StoreItemStatus } from '../utils/constants';
 import fetchUtil from '../utils/fetchUtil';
 
-interface T {
+interface City {
   name: string;
   Key: string;
 }
-
-interface City extends T {}
 
 interface DefaultCityState {
   city: City | null;
@@ -22,12 +20,11 @@ const initialState: DefaultCityState = {
   error: null,
 };
 
-const defaultCitySlice = createSlice({
+const currentCitySlice = createSlice({
   name: 'defaultCity',
   initialState,
   reducers: {
     getGeoLocation: state => {
-      console.log('loading default city');
       state.status = StoreItemStatus.Loading;
     },
     setLocation: (state, action: PayloadAction<City>) => {
@@ -41,42 +38,36 @@ const defaultCitySlice = createSlice({
   },
 });
 
-const { getGeoLocation, setLocation, setError } = defaultCitySlice.actions;
+const { getGeoLocation, setLocation, setError } = currentCitySlice.actions;
 
-export const getDefaultCity = (): AppThunk => {
-  console.log('getDefaultCity');
+export const currentCity = (city?: City): AppThunk => {
   return async dispatch => {
+    if (city) {
+      dispatch(setLocation(city));
+      return;
+    }
     dispatch(getGeoLocation());
-
     navigator.geolocation.getCurrentPosition(
       async geoPosition => {
         const latitude = geoPosition.coords.latitude;
         const longitude = geoPosition.coords.longitude;
-        if (geoPosition) {
-          try {
-            const currentCity = await fetchUtil(
-              `/locations/v1/cities/geoposition/search`,
-              `${latitude},${longitude}`
-            );
-            const { LocalizedName: name, Key } = currentCity;
-            dispatch(setLocation({ name, Key }));
-          } catch (err) {
-            dispatch(setError(err));
-          }
-        } else {
-          dispatch(
-            setLocation({
-              name: DefaultCity.Name,
-              Key: DefaultCity.Key,
-            })
+        try {
+          const currentCity = await fetchUtil(
+            `/locations/v1/cities/geoposition/search`,
+            `${latitude},${longitude}`
           );
+          const { LocalizedName: name, Key } = currentCity;
+          dispatch(setLocation({ name, Key }));
+        } catch (err) {
+          dispatch(setError(err));
         }
       },
       err => {
-        console.warn(err);
+        // if error is NOT due to user denying GeoLocation, set error
         if (err.code !== 1) {
           dispatch(setError(err.message));
         }
+        // else set default city
         dispatch(
           setLocation({
             name: DefaultCity.Name,
@@ -88,4 +79,4 @@ export const getDefaultCity = (): AppThunk => {
   };
 };
 
-export default defaultCitySlice;
+export default currentCitySlice;

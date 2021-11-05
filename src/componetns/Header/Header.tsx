@@ -7,12 +7,14 @@ import Tooltip from '@mui/material/Tooltip';
 import { StyledLink, StyledModeIcon, StyledHeader } from './StyleComponents';
 import { useMediaQuery, useTheme } from '@mui/material';
 import MobileNav from './MobileNav';
+import { currentCity, useAppDispatch } from '../../store';
 
 const Header: React.FC = () => {
   const theme = useTheme();
   const mdAndDown = useMediaQuery(theme.breakpoints.down('md'));
   const toggleColorMode = useToggleColorMode();
   const { Title, HomeLink, FavLink, ToggleDarkMode } = HeaderTexts;
+  const dispatch = useAppDispatch();
 
   return (
     <StyledHeader>
@@ -27,7 +29,14 @@ const Header: React.FC = () => {
         <MobileNav />
       ) : (
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
-          <StyledLink to={Routes.Home} exact activeClassName="activeRoute">
+          <StyledLink
+            to={Routes.Home}
+            exact
+            activeClassName="activeRoute"
+            onClick={() => {
+              dispatch(currentCity());
+            }}
+          >
             {HomeLink}
           </StyledLink>
           <StyledLink to={Routes.Favorites} activeClassName="activeRoute">

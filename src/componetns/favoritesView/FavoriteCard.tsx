@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 import {
+  currentCity,
   getFavWeather,
   removeFromFavorites,
   useAppDispatch,
@@ -37,10 +38,8 @@ const FavoriteCard: React.FC<Props> = ({ locationKey, name }) => {
   } = useAppSelector(state => state.favorites.favorites[locationKey]);
 
   const handleFavoriteClick = () => {
-    history.push(Routes.Home, {
-      locationKey,
-      locationName: name,
-    });
+    dispatch(currentCity({ name, Key: locationKey }));
+    history.push(Routes.Home);
   };
 
   const handleRemoveFromFavorites = (
