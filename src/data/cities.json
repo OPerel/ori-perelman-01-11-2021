@@ -98,5 +98,30 @@
       "MobileLink": "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
       "Link": "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us"
     }
+  ],
+  "215779": [
+    {
+      "LocalObservationDateTime": "2021-11-05T17:01:00+02:00",
+      "EpochTime": 1636124460,
+      "WeatherText": "Clear",
+      "WeatherIcon": 33,
+      "HasPrecipitation": false,
+      "PrecipitationType": null,
+      "IsDayTime": false,
+      "Temperature": {
+        "Metric": {
+          "Value": 27.3,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Imperial": {
+          "Value": 81.0,
+          "Unit": "F",
+          "UnitType": 18
+        }
+      },
+      "MobileLink": "http://www.accuweather.com/en/il/shapira/215779/current-weather/215779?lang=en-us",
+      "Link": "http://www.accuweather.com/en/il/shapira/215779/current-weather/215779?lang=en-us"
+    }
   ]
 }

@@ -1,6 +1,7 @@
 import * as auto from '../data/autoComplete.json';
 import * as current from '../data/data.json';
 import * as cities from '../data/cities.json';
+import * as geoLocation from '../data/geoLocation.json';
 
 const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
   return new Promise<any>(async (resolve, reject) => {
@@ -33,6 +34,8 @@ const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
         resolve((auto as any).default);
       } else if (endpoint.includes('5day')) {
         resolve((current as any).default.forecast);
+      } else if (endpoint.includes('geoposition')) {
+        resolve((geoLocation as any).default);
       } else {
         const key = endpoint.split('/')[3];
         const citiesObj = (cities as any).default;

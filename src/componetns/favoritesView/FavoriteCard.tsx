@@ -14,7 +14,11 @@ import {
   Routes,
   StoreItemStatus,
 } from '../../utils/constants';
-import { RemoveFavorite, StyledFavoriteCard, StyledContent } from './StyledComponents';
+import {
+  RemoveFavorite,
+  StyledFavoriteCard,
+  StyledContent,
+} from './StyledComponents';
 import Delete from '@mui/icons-material/Delete';
 import { Tooltip } from '@mui/material';
 

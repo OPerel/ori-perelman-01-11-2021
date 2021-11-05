@@ -13,12 +13,13 @@ const ColorModeToggleContext = createContext(() => {});
 export const useToggleColorMode = () => useContext(ColorModeToggleContext);
 
 const CustomThemeProvider: React.FC = ({ children }) => {
-  const [mode, setMode] = useState<Mode>('light');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const initialState = prefersDarkMode ? 'dark' : 'light';
+  const [mode, setMode] = useState<Mode>(initialState);
 
-  if (prefersDarkMode) {
-    setMode('dark');
-  }
+  // if (prefersDarkMode) {
+  //   setMode('dark');
+  // }
 
   const toggleColorMode = () => {
     setMode(prev => {
@@ -26,7 +27,10 @@ const CustomThemeProvider: React.FC = ({ children }) => {
     });
   };
 
-  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+  const theme = React.useMemo(
+    () => createTheme(getDesignTokens(mode)),
+    [mode, prefersDarkMode]
+  );
 
   return (
     <ColorModeToggleContext.Provider value={toggleColorMode}>
