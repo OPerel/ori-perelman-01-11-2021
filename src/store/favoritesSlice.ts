@@ -44,7 +44,7 @@ const favoritesSlice = createSlice({
       state.favorites[id] = { ...state.favorites[id], name };
     },
     removeFavorite: (state, action: PayloadAction<string>) => {
-      state.status = StoreItemStatus.Idle;
+      state.favorites[action.payload].status = StoreItemStatus.Idle;
       delete state.favorites[action.payload];
     },
     setFavorites: (state, action: PayloadAction<Favorites>) => {
@@ -90,7 +90,7 @@ export const addToFavorites = (id: string, name: string): AppThunk => {
 
 export const removeFromFavorites = (favoriteId: string): AppThunk => {
   return async dispatch => {
-    dispatch(fetchFavorites());
+    dispatch(getFavorite(favoriteId));
     try {
       const idToRemove = await fetchUtil('/remove-favorite', favoriteId);
       dispatch(removeFavorite(idToRemove));
