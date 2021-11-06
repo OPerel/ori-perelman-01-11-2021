@@ -15,6 +15,7 @@ import { SearchInputTexts, StoreItemStatus } from '../../utils/constants';
 import { useTheme } from '@mui/material';
 import useInputValidation from '../../hooks/useInputValidation';
 import SearchIcon from '@mui/icons-material/Search';
+import { SearchInputBox } from './StyledComponents';
 
 const SearchInput: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -29,7 +30,7 @@ const SearchInput: React.FC = () => {
   const typeError = useInputValidation(inputValue);
 
   return (
-    <Box>
+    <SearchInputBox>
       <Autocomplete
         loading={autoCompleteStatus === StoreItemStatus.Loading}
         options={options}
@@ -81,7 +82,7 @@ const SearchInput: React.FC = () => {
         )}
       />
       {autoCompleteError && <AppAlert message={autoCompleteError} />}
-    </Box>
+    </SearchInputBox>
   );
 };
 

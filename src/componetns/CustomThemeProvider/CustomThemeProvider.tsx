@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import {
   createTheme,
   ThemeProvider,
@@ -6,8 +6,7 @@ import {
   PaletteMode,
 } from '@mui/material';
 import { ThemeProvider as StyledTheme } from 'styled-components';
-
-type Mode = 'light' | 'dark';
+import getDesignTokens from '../../utils/getPalette';
 
 const ColorModeToggleContext = createContext(() => {});
 export const useToggleColorMode = () => useContext(ColorModeToggleContext);
@@ -15,11 +14,13 @@ export const useToggleColorMode = () => useContext(ColorModeToggleContext);
 const CustomThemeProvider: React.FC = ({ children }) => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const initialState = prefersDarkMode ? 'dark' : 'light';
-  const [mode, setMode] = useState<Mode>(initialState);
+  const [mode, setMode] = useState<PaletteMode>(initialState);
 
-  // if (prefersDarkMode) {
-  //   setMode('dark');
-  // }
+  useEffect(() => {
+    if (prefersDarkMode) {
+      setMode('dark');
+    }
+  }, [setMode, prefersDarkMode]);
 
   const toggleColorMode = () => {
     setMode(prev => {
@@ -42,48 +43,3 @@ const CustomThemeProvider: React.FC = ({ children }) => {
 };
 
 export default CustomThemeProvider;
-
-const getDesignTokens = (mode: PaletteMode) => ({
-  palette: {
-    mode,
-    ...(mode === 'light'
-      ? {
-          // palette values for light mode
-          primary: {
-            main: '#004d40',
-            dark: '#006848',
-            contrastText: '#f5f5f5',
-          },
-          secondary: {
-            main: '#006c45',
-          },
-          info: {
-            main: '#002419',
-          },
-          background: {
-            default: '#F4EEE8',
-            paper: '#D4ECDD',
-          },
-        }
-      : {
-          primary: {
-            main: '#253337',
-            dark: '#002530',
-            contrastText: '#a8aaaa',
-          },
-          secondary: {
-            main: '#a8aaaa',
-          },
-          info: {
-            main: '#a6c9cb',
-          },
-          background: {
-            default: '#002530',
-            paper: '#0D2B33',
-          },
-          error: {
-            main: '#d94444',
-          },
-        }),
-  },
-});

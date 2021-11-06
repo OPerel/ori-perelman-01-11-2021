@@ -7,6 +7,15 @@ const StyledBox = styled(Box)`
   text-align: center;
 `;
 
+const SearchInputBox = styled(Box)(
+  ({ theme }) => `
+    ${theme.breakpoints.up('md')} {
+      max-width: 50%;
+      margin: 0 auto;
+    }
+  `
+);
+
 const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -32,4 +41,4 @@ const ForecastCard = styled(Card)(
   `
 );
 
-export { StyledBox, StyledHeader, WeatherText, ForecastCard };
+export { StyledBox, StyledHeader, WeatherText, ForecastCard, SearchInputBox };
