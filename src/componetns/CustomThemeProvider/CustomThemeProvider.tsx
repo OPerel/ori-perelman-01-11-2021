@@ -30,7 +30,7 @@ const CustomThemeProvider: React.FC = ({ children }) => {
 
   const theme = React.useMemo(
     () => createTheme(getDesignTokens(mode)),
-    [mode, prefersDarkMode]
+    [mode]
   );
 
   return (

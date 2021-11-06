@@ -9,7 +9,6 @@ import {
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import AppAlert from '../common/Alert';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { SearchInputTexts, StoreItemStatus } from '../../utils/constants';
 import { useTheme } from '@mui/material';
