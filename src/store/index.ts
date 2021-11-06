@@ -12,14 +12,17 @@ import favoritesSlice, {
   getAllFavorites,
   getFavWeather,
 } from './favoritesSlice';
-import currentCitySlice, { currentCity } from './currentCitySlice';
+import currentCitySlice, {
+  currentCity,
+  getIsFavorite,
+} from './currentCitySlice';
 
 export const store = configureStore({
   reducer: {
     autoComplete: autoCompleteSlice.reducer,
     currentWeather: currentWeatherSlice.reducer,
     favorites: favoritesSlice.reducer,
-    defaultCity: currentCitySlice.reducer,
+    currentCity: currentCitySlice.reducer,
   },
 });
 
@@ -45,6 +48,7 @@ export {
   getAllFavorites,
   getFavWeather,
   currentCity,
+  getIsFavorite,
   useAppDispatch,
   useAppSelector,
 };

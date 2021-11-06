@@ -5,7 +5,7 @@ export default function useInputValidation(input: string) {
 
   useEffect(() => {
     if (input) {
-      const englishLetters = /^[A-Za-z]+$/;
+      const englishLetters = /^[A-Za-z ]+$/;
       setTypeError(!input.match(englishLetters));
     }
   }, [input]);

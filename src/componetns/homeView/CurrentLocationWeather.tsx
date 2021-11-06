@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import AppAlert from '../common/Alert';
 import Card from '@mui/material/Card';
@@ -9,10 +9,10 @@ import {
   addToFavorites,
   fetchCurrentWeather,
   removeFromFavorites,
-  getAllFavorites,
   useAppDispatch,
   useAppSelector,
   currentCity,
+  getIsFavorite,
 } from '../../store';
 import Forecast from './Forecast';
 import CurrentLocationHeader from './CurrentLocationHeader';
@@ -29,47 +29,40 @@ const CurrentLocationWeather: React.FC = () => {
   } = useAppSelector(state => state.currentWeather);
   const {
     city,
-    status: defaultCityStatus,
-    error: defaultCityError,
-  } = useAppSelector(state => state.defaultCity);
-  const { favorites } = useAppSelector(state => state.favorites);
-  const [isFavoriteLocation, setIsFavoriteLocation] = useState<boolean>(
-    value && value.Key in favorites
-  );
+    isFavorite,
+    status: currentCityStatus,
+    error: currentCityError,
+  } = useAppSelector(state => state.currentCity);
 
   const handleFavClick = () => {
     if (city) {
-      if (isFavoriteLocation) {
+      if (isFavorite) {
         dispatch(removeFromFavorites(value.Key));
       } else {
         dispatch(addToFavorites(value.Key, city.name));
       }
+      dispatch(getIsFavorite(city.Key));
     }
   };
 
-  // on mount get default city and all favorites
+  // on mount get current city and all favorites
   useEffect(() => {
-    dispatch(getAllFavorites());
-    if (defaultCityStatus === StoreItemStatus.Idle && city) {
+    if (currentCityStatus === StoreItemStatus.Idle && city) {
+      dispatch(getIsFavorite(city.Key));
       dispatch(fetchCurrentWeather(city));
-    } else if (defaultCityStatus === StoreItemStatus.Idle && !city) {
+    } else if (currentCityStatus === StoreItemStatus.Idle && !city) {
       dispatch(currentCity());
     }
-  }, [city, defaultCityStatus, dispatch]);
+  }, [city, currentCityStatus, dispatch]);
 
-  // update location favorite status
-  useEffect(() => {
-    setIsFavoriteLocation(value && value.Key in favorites);
-  }, [value, favorites]);
-
-  const error = defaultCityError || currentWeatherError;
+  const error = currentCityError || currentWeatherError;
   if (error) {
     return <AppAlert message={error} />;
   }
 
   const loading =
     currentWeatherStatus === StoreItemStatus.Loading ||
-    defaultCityStatus === StoreItemStatus.Loading;
+    currentCityStatus === StoreItemStatus.Loading;
 
   return (
     <StyledBox>
@@ -84,7 +77,7 @@ const CurrentLocationWeather: React.FC = () => {
               <CurrentLocationHeader
                 cityName={city.name}
                 temp={data.currentWeather[0].Temperature.Metric.Value}
-                isFavoriteLocation={isFavoriteLocation}
+                isFavoriteLocation={isFavorite}
                 handleFavClick={handleFavClick}
               />
 

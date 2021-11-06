@@ -11,7 +11,6 @@ interface LocationData {
 interface CurrentWeatherState {
   value: any;
   data: LocationData | null;
-  isFav: boolean;
   status: 'idle' | 'loading' | 'failed';
   error: string | null;
 }
@@ -19,7 +18,6 @@ interface CurrentWeatherState {
 const initialState: CurrentWeatherState = {
   value: null,
   data: null,
-  isFav: false,
   status: StoreItemStatus.Idle,
   error: null,
 };

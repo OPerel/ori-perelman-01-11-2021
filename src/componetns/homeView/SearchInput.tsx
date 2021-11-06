@@ -14,6 +14,7 @@ import Paper from '@mui/material/Paper';
 import { SearchInputTexts, StoreItemStatus } from '../../utils/constants';
 import { useTheme } from '@mui/material';
 import useInputValidation from '../../hooks/useInputValidation';
+import SearchIcon from '@mui/icons-material/Search';
 
 const SearchInput: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -40,9 +41,10 @@ const SearchInput: React.FC = () => {
         }}
         value={value}
         onChange={(e, newValue) => {
-          dispatch(
-            currentCity({ name: newValue.LocalizedName, Key: newValue.Key })
-          );
+          newValue &&
+            dispatch(
+              currentCity({ name: newValue.LocalizedName, Key: newValue.Key })
+            );
         }}
         renderInput={params => {
           return (
@@ -57,6 +59,7 @@ const SearchInput: React.FC = () => {
               }}
               InputProps={{
                 ...params.InputProps,
+                startAdornment: <SearchIcon />,
                 endAdornment: (
                   <React.Fragment>
                     {autoCompleteStatus === StoreItemStatus.Loading && (

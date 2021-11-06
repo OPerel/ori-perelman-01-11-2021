@@ -8,14 +8,16 @@ interface City {
   Key: string;
 }
 
-interface DefaultCityState {
+interface CurrentCityState {
   city: City | null;
+  isFavorite: boolean;
   status: 'idle' | 'loading' | 'failed';
   error: string | null;
 }
 
-const initialState: DefaultCityState = {
+const initialState: CurrentCityState = {
   city: null,
+  isFavorite: false,
   status: StoreItemStatus.Idle,
   error: null,
 };
@@ -31,6 +33,10 @@ const currentCitySlice = createSlice({
       state.status = StoreItemStatus.Idle;
       state.city = action.payload;
     },
+    isFavorite: (state, action: PayloadAction<boolean>) => {
+      state.status = StoreItemStatus.Idle;
+      state.isFavorite = action.payload;
+    },
     setError: (state, action: PayloadAction<string>) => {
       state.status = StoreItemStatus.Failed;
       state.error = action.payload;
@@ -38,7 +44,8 @@ const currentCitySlice = createSlice({
   },
 });
 
-const { getGeoLocation, setLocation, setError } = currentCitySlice.actions;
+const { getGeoLocation, setLocation, isFavorite, setError } =
+  currentCitySlice.actions;
 
 export const currentCity = (city?: City): AppThunk => {
   return async dispatch => {
@@ -52,11 +59,11 @@ export const currentCity = (city?: City): AppThunk => {
         const latitude = geoPosition.coords.latitude;
         const longitude = geoPosition.coords.longitude;
         try {
-          const currentCity = await fetchUtil(
+          const cityByGeoPosition = await fetchUtil(
             `/locations/v1/cities/geoposition/search`,
             `${latitude},${longitude}`
           );
-          const { LocalizedName: name, Key } = currentCity;
+          const { LocalizedName: name, Key } = cityByGeoPosition;
           dispatch(setLocation({ name, Key }));
         } catch (err) {
           dispatch(setError(err));
@@ -76,6 +83,17 @@ export const currentCity = (city?: City): AppThunk => {
         );
       }
     );
+  };
+};
+
+export const getIsFavorite = (id: string): AppThunk => {
+  return async dispatch => {
+    try {
+      const isFav = await fetchUtil('/is-favorite', id);
+      dispatch(isFavorite(isFav));
+    } catch (err) {
+      dispatch(setError(err));
+    }
   };
 };
 

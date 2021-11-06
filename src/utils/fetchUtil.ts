@@ -85,6 +85,10 @@ const mockFavoriteEndpoint = (endpoint: string, data: string) => {
       localStorage.removeItem(data);
       return data;
     }
+    case '/is-favorite': {
+      const favoriteItem = localStorage.getItem(data);
+      return favoriteItem !== null;
+    }
     case '/get-favorites': {
       let favorites: { [key: string]: { name: string } } = {};
       const keys = Object.keys(localStorage);
