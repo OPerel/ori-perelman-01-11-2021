@@ -17,7 +17,7 @@ const fetchUtil = async (endpoint: string, data?: string): Promise<any> => {
     }
 
     const apiKey = process.env.REACT_APP_API_KEY;
-    let url = `http://dataservice.accuweather.com${endpoint}?apikey=${apiKey}`;
+    let url = `https://dataservice.accuweather.com${endpoint}?apikey=${apiKey}`;
 
     if (data) {
       url += `&q=${data}&language=en-us`;
