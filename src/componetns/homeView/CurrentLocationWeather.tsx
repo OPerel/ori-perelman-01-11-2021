@@ -20,7 +20,6 @@ import { StoreItemStatus } from '../../utils/constants';
 
 const CurrentLocationWeather: React.FC = () => {
   const dispatch = useAppDispatch();
-
   const {
     value,
     data,
@@ -45,7 +44,6 @@ const CurrentLocationWeather: React.FC = () => {
     }
   };
 
-  // on mount get current city and all favorites
   useEffect(() => {
     if (currentCityStatus === StoreItemStatus.Idle && city) {
       dispatch(getIsFavorite(city.Key));
@@ -70,7 +68,6 @@ const CurrentLocationWeather: React.FC = () => {
         <CircularProgress color="info" size={50} />
       ) : (
         city &&
-        value &&
         data && (
           <Card>
             <CardContent>

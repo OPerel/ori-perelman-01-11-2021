@@ -27,7 +27,8 @@ export const store = configureStore({
 });
 
 type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
+type RootState = ReturnType<typeof store.getState>;
+export type Status = 'idle' | 'loading' | 'failed';
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
@@ -36,7 +37,6 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   Action<string>
 >;
 
-// Use throughout the app instead of plain `useDispatch` and `useSelector`
 const useAppDispatch = () => useDispatch<AppDispatch>();
 const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 

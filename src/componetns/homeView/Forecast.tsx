@@ -6,11 +6,11 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { ForecastCard } from './StyledComponents';
 
-interface Props {
+interface ForecastProps {
   forecast: any[];
 }
 
-const Forecast: React.FC<Props> = ({ forecast }) => {
+const Forecast: React.FC<ForecastProps> = ({ forecast }) => {
   return (
     <Stack
       direction={{ xs: 'column', md: 'row' }}

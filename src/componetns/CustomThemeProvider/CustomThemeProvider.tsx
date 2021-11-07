@@ -28,10 +28,7 @@ const CustomThemeProvider: React.FC = ({ children }) => {
     });
   };
 
-  const theme = React.useMemo(
-    () => createTheme(getDesignTokens(mode)),
-    [mode]
-  );
+  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   return (
     <ColorModeToggleContext.Provider value={toggleColorMode}>

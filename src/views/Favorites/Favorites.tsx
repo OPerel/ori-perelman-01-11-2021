@@ -32,7 +32,7 @@ const Favorites: React.FC = () => {
           {favKeys.map(favKey => {
             const { name } = favorites[favKey];
             return (
-              <Grid key={favKey} item xs={6} md={2}>
+              <Grid item key={favKey} xs={6} md={2}>
                 <FavoriteCard locationKey={favKey} name={name} />
               </Grid>
             );

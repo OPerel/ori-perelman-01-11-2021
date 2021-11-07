@@ -2,11 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from './';
 import fetchUtil from '../utils/fetchUtil';
 import { StoreItemStatus } from '../utils/constants';
+import { Status } from './';
 
 interface AutoCompleteState {
   inputValue: string;
   options: any[];
-  status: 'idle' | 'loading' | 'failed';
+  status: Status;
   error: string | null;
 }
 

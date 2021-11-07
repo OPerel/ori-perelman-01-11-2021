@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
+import Delete from '@mui/icons-material/Delete';
+import Tooltip from '@mui/material/Tooltip';
 import {
   currentCity,
   getFavWeather,
@@ -20,15 +22,13 @@ import {
   StyledFavoriteCard,
   StyledContent,
 } from './StyledComponents';
-import Delete from '@mui/icons-material/Delete';
-import { Tooltip } from '@mui/material';
 
-interface Props {
+interface FavoriteCardProps {
   locationKey: string;
   name: string;
 }
 
-const FavoriteCard: React.FC<Props> = ({ locationKey, name }) => {
+const FavoriteCard: React.FC<FavoriteCardProps> = ({ locationKey, name }) => {
   const dispatch = useAppDispatch();
   const history = useHistory();
   const {

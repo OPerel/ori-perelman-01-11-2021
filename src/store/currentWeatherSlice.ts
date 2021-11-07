@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from './';
 import fetchUtil from '../utils/fetchUtil';
 import { StoreItemStatus } from '../utils/constants';
+import { Status } from './';
 
 interface LocationData {
   currentWeather: any;
@@ -11,7 +12,7 @@ interface LocationData {
 interface CurrentWeatherState {
   value: any;
   data: LocationData | null;
-  status: 'idle' | 'loading' | 'failed';
+  status: Status;
   error: string | null;
 }
 
@@ -53,7 +54,7 @@ const { reset, fetchWeather, setWeather, setError } =
  * Action thunk creator that accepts an object with a "Key" field.
  */
 export const fetchCurrentWeather = (location: any): AppThunk => {
-  return async (dispatch, getState) => {
+  return async dispatch => {
     if (!location) {
       dispatch(reset());
       return;

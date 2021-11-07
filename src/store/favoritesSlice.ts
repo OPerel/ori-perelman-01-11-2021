@@ -2,11 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from './';
 import fetchUtil from '../utils/fetchUtil';
 import { StoreItemStatus } from '../utils/constants';
+import { Status } from './';
 
 interface Favorite {
   name: string;
   currentWeather?: any;
-  status: 'idle' | 'loading' | 'failed';
+  status: Status;
   error: string | null;
 }
 
@@ -18,7 +19,7 @@ interface Favorites {
 
 interface FavoritesState {
   favorites: Favorites;
-  status: 'idle' | 'loading' | 'failed';
+  status: Status;
   error: string | null;
 }
 

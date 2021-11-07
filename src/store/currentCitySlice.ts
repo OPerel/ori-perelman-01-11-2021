@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from './';
 import { DefaultCity, StoreItemStatus } from '../utils/constants';
 import fetchUtil from '../utils/fetchUtil';
+import { Status } from './';
 
 interface City {
   name: string;
@@ -11,7 +12,7 @@ interface City {
 interface CurrentCityState {
   city: City | null;
   isFavorite: boolean;
-  status: 'idle' | 'loading' | 'failed';
+  status: Status;
   error: string | null;
 }
 
